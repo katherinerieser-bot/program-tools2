@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mentor &amp; Contact Roster</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📇</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,560;0,9..144,650;1,9..144,500&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#241f19;
+    --ink-soft:#54493d;
+    --paper:#efeae1;
+    --paper-raised:#f8f5ee;
+    --line:#d8d0c0;
+    --brick:#8c2a2a;
+    --brick-deep:#6e1f1f;
+    --gold:#a9823b;
+    --pine:#4c5f48;
+    --slate:#3f5566;
+    --plum:#6a4e63;
+    --ok-bg:#eef2e8;
+    font-family:'Public Sans',sans-serif;
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#efe8db;
+      --ink-soft:#c8bba3;
+      --paper:#211a14;
+      --paper-raised:#2a2119;
+      --line:#443828;
+      --brick:#c75c4e;
+      --brick-deep:#a6483c;
+      --gold:#d9ac5b;
+      --pine:#89a47f;
+      --slate:#7fa0b8;
+      --plum:#b393a9;
+      --ok-bg:#2b3328;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#efe8db;
+    --ink-soft:#c8bba3;
+    --paper:#211a14;
+    --paper-raised:#2a2119;
+    --line:#443828;
+    --brick:#c75c4e;
+    --brick-deep:#a6483c;
+    --gold:#d9ac5b;
+    --pine:#89a47f;
+    --slate:#7fa0b8;
+    --plum:#b393a9;
+    --ok-bg:#2b3328;
+  }
+  html{scroll-padding-top:env(safe-area-inset-top,0px);}
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);}
+  body{min-height:100%;}
+  h1,h2,h3,.display{font-family:'Fraunces',serif;}
+
+  /* ---------- Header ---------- */
+  header.top{
+    background:linear-gradient(180deg,#2c1d14,#241711);
+    color:#f2ead9;
+    padding:28px clamp(16px,4vw,48px) 24px;
+    border-bottom:4px solid var(--gold);
+  }
+  header.top .eyebrow-row{
+    display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:10px 24px;
+  }
+  header.top h1{
+    font-size:clamp(28px,4vw,40px);
+    font-weight:650;
+    margin:0;
+    letter-spacing:.2px;
+  }
+  header.top p.tag{
+    margin:6px 0 0;
+    color:#cdbfa2;
+    font-size:14.5px;
+    max-width:62ch;
+  }
+  .count-pill{
+    font-family:'Fraunces',serif;
+    font-size:15px;
+    color:#f2ead9;
+    border:1px solid #6a5a44;
+    padding:6px 14px;
+    border-radius:3px;
+    white-space:nowrap;
+  }
+  .count-pill b{color:#e7c77e;font-weight:650;}
+
+  /* ---------- Layout ---------- */
+  .shell{
+    display:grid;
+    grid-template-columns: 272px 1fr;
+    gap:0;
+    max-width:1400px;
+    margin:0 auto;
+  }
+  @media (max-width: 880px){
+    .shell{grid-template-columns:1fr;}
+  }
+
+  /* ---------- Sidebar ---------- */
+  aside{
+    padding:26px 20px 60px;
+    border-right:1px solid var(--line);
+    background:var(--paper-raised);
+  }
+  @media (max-width:880px){
+    aside{border-right:none;border-bottom:1px solid var(--line);}
+  }
+  .search-box{
+    position:relative;
+    margin-bottom:22px;
+  }
+  .search-box input{
+    width:100%;
+    padding:10px 12px 10px 34px;
+    border:1px solid var(--line);
+    border-radius:4px;
+    background:#fff;
+    font-size:14.5px;
+    font-family:'Public Sans',sans-serif;
+    color:var(--ink);
+  }
+  .search-box input:focus{outline:2px solid var(--brick);outline-offset:1px;}
+  .search-box svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);opacity:.55;}
+
+  .side-section{margin-bottom:26px;}
+  .side-section h3{
+    font-size:12.5px;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    font-family:'Public Sans',sans-serif;
+    font-weight:700;
+    color:var(--ink-soft);
+    margin:0 0 10px;
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  .side-section h3 button{
+    font-family:'Public Sans',sans-serif;
+    font-size:11px;
+    text-transform:none;
+    letter-spacing:0;
+    font-weight:600;
+    background:none;border:none;color:var(--brick);cursor:pointer;padding:0;
+  }
+  .cat-list{list-style:none;margin:0;padding:0;}
+  .cat-list li{margin-bottom:4px;}
+  .cat-btn{
+    width:100%;
+    display:flex; align-items:center; justify-content:space-between; gap:8px;
+    background:none;border:none;
+    padding:7px 8px;
+    border-radius:4px;
+    cursor:pointer;
+    font-size:14px;
+    font-family:'Public Sans',sans-serif;
+    color:var(--ink);
+    text-align:left;
+  }
+  .cat-btn:hover{background:var(--ok-bg);}
+  .cat-btn.active{background:var(--ink);color:#fff;}
+  .cat-btn .swatch{width:9px;height:9px;border-radius:2px;flex:none;}
+  .cat-btn .num{font-variant-numeric:tabular-nums;opacity:.65;font-size:12.5px;}
+  .cat-btn.active .num{opacity:.85;}
+
+  .tag-cloud{display:flex;flex-wrap:wrap;gap:6px;}
+  .tag-chip{
+    font-size:12.5px;
+    padding:4px 10px;
+    border-radius:999px;
+    border:1px solid var(--line);
+    background:#fff;
+    cursor:pointer;
+    color:var(--ink-soft);
+    line-height:1.3;
+  }
+  .tag-chip:hover{border-color:var(--brick);color:var(--brick);}
+  .tag-chip.active{background:var(--brick);border-color:var(--brick);color:#fff;}
+  .tag-search{
+    width:100%;
+    padding:6px 9px;
+    font-size:12.5px;
+    border:1px solid var(--line);
+    border-radius:4px;
+    margin-bottom:8px;
+    font-family:'Public Sans',sans-serif;
+  }
+  .tag-cloud-scroll{max-height:230px;overflow-y:auto;padding-right:4px;}
+
+  .reset-link{
+    font-size:12.5px;color:var(--brick);text-decoration:underline;cursor:pointer;background:none;border:none;padding:0;
+  }
+
+  /* ---------- Main ---------- */
+  main{padding:24px clamp(14px,3vw,34px) 70px;}
+  .toolbar{
+    display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;
+    margin-bottom:16px;
+  }
+  .active-filters{
+    display:flex; flex-wrap:wrap; gap:6px; align-items:center; font-size:13px; color:var(--ink-soft);
+  }
+  .active-filters .f-chip{
+    background:var(--paper-raised);
+    border:1px solid var(--line);
+    border-radius:999px;
+    padding:3px 10px 3px 10px;
+    display:flex; align-items:center; gap:6px;
+  }
+  .active-filters .f-chip button{background:none;border:none;cursor:pointer;color:var(--ink-soft);font-size:13px;line-height:1;}
+
+  .sort-select{
+    font-family:'Public Sans',sans-serif;
+    font-size:13px;
+    padding:7px 10px;
+    border:1px solid var(--line);
+    border-radius:4px;
+    background:#fff;
+    color:var(--ink);
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+    gap:14px;
+  }
+
+  .card{
+    background:var(--paper-raised);
+    border:1px solid var(--line);
+    border-left:4px solid var(--brick);
+    border-radius:3px;
+    padding:15px 16px 14px;
+    cursor:pointer;
+    display:flex; flex-direction:column; gap:7px;
+    transition:border-color .12s, transform .08s;
+  }
+  .card:hover{border-color:var(--ink);}
+  .card:hover{transform:translateY(-1px);}
+  .card .row1{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;}
+  .card h3{margin:0;font-size:18px;font-weight:560;line-height:1.25;}
+  .card .star{
+    background:none;border:none;cursor:pointer;font-size:16px;line-height:1;color:var(--line);flex:none;
+  }
+  .card .star.on{color:var(--gold);}
+  .card .meta{font-size:13px;color:var(--ink-soft);line-height:1.45;}
+  .card .meta .school{font-weight:600;color:var(--ink);}
+  .card .cat-badge{
+    display:inline-block;
+    font-size:11px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    padding:2px 7px;
+    border-radius:3px;
+    width:fit-content;
+  }
+  .card .chiprow{display:flex;flex-wrap:wrap;gap:5px;margin-top:2px;}
+  .card .mini-tag{
+    font-size:11px;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:999px;
+    padding:2px 8px;
+    color:var(--ink-soft);
+  }
+  .card .mini-tag.custom{border-color:var(--pine);color:var(--pine);}
+  .card .mini-tag.more{color:var(--ink-soft);border-style:dashed;}
+
+  .empty-state{
+    text-align:center;
+    padding:70px 20px;
+    color:var(--ink-soft);
+  }
+  .empty-state h2{margin-bottom:6px;}
+
+  /* ---------- Modal ---------- */
+  .overlay{
+    position:fixed;inset:0;background:rgba(27,19,12,.45);
+    display:none;align-items:flex-start;justify-content:center;
+    padding:5vh 16px; overflow-y:auto; z-index:50;
+  }
+  .overlay.show{display:flex;}
+  .modal{
+    background:var(--paper-raised);
+    border:1px solid var(--line);
+    border-top:5px solid var(--brick);
+    max-width:620px;width:100%;
+    border-radius:4px;
+    padding:28px 28px 26px;
+    position:relative;
+  }
+  .modal .close-x{
+    position:absolute; top:14px; right:16px;
+    background:none;border:none;font-size:20px;cursor:pointer;color:var(--ink-soft);
+  }
+  .modal h2{margin:0 0 4px;font-size:25px;}
+  .modal .modal-meta{color:var(--ink-soft);font-size:14.5px;margin-bottom:14px;}
+  .modal .field-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:10px 20px; margin:16px 0;
+  }
+  .modal .field{font-size:13.5px;}
+  .modal .field label{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-soft);margin-bottom:2px;font-weight:700;}
+  .modal .field div{color:var(--ink);}
+  .modal .notes-box{
+    background:#fff;border:1px solid var(--line);border-radius:4px;padding:10px 12px;font-size:14px;margin-top:4px;white-space:pre-wrap;
+  }
+  .modal .tag-edit{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0;}
+  .modal .tag-edit .tag-chip{position:relative;padding-right:22px;}
+  .modal .tag-edit .tag-chip .x{
+    position:absolute;right:6px;top:50%;transform:translateY(-50%);font-size:12px;
+  }
+  .modal .add-tag-row{display:flex;gap:6px;margin-top:8px;}
+  .modal .add-tag-row input{
+    flex:1;padding:7px 10px;border:1px solid var(--line);border-radius:4px;font-size:13.5px;font-family:'Public Sans',sans-serif;
+  }
+  .modal .add-tag-row button{
+    padding:7px 14px;background:var(--ink);color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:13.5px;font-family:'Public Sans',sans-serif;
+  }
+  .modal .mail-btn{
+    display:inline-block;margin-top:4px;background:var(--brick);color:#fff;text-decoration:none;
+    padding:8px 16px;border-radius:4px;font-size:14px;font-weight:600;
+  }
+  .modal .private-note{
+    width:100%;min-height:70px;border:1px solid var(--line);border-radius:4px;padding:8px 10px;
+    font-family:'Public Sans',sans-serif;font-size:13.5px;resize:vertical;margin-top:4px;
+  }
+  .section-label{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-soft);font-weight:700;margin:16px 0 4px;}
+
+  ::-webkit-scrollbar{width:9px;}
+  ::-webkit-scrollbar-thumb{background:#c9bfa9;border-radius:5px;}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="eyebrow-row">
+    <div>
+      <h1>Mentor &amp; Contact Roster</h1>
+      <p class="tag">Mentors, school partners, and university contacts — searchable, taggable, all in one place.</p>
+    </div>
+    <div class="count-pill"><b id="visibleCount">0</b> of <span id="totalCount">0</span> contacts shown</div>
+  </div>
+</header>
+
+<div class="shell">
+  <aside>
+    <div class="search-box">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" id="searchInput" placeholder="Search name, school, district, notes…">
+    </div>
+
+    <div class="side-section">
+      <h3>Category <button id="resetCats">reset</button></h3>
+      <ul class="cat-list" id="catList"></ul>
+    </div>
+
+    <div class="side-section">
+      <h3>Tags <button id="resetTags">reset</button></h3>
+      <input type="text" class="tag-search" id="tagSearch" placeholder="Filter tags…">
+      <div class="tag-cloud tag-cloud-scroll" id="tagCloud"></div>
+    </div>
+
+    <div class="side-section">
+      <h3>★ Favorites</h3>
+      <label style="font-size:13.5px;display:flex;gap:7px;align-items:center;cursor:pointer;">
+        <input type="checkbox" id="favOnly"> Show favorites only
+      </label>
+    </div>
+
+    <button class="reset-link" id="resetAll" style="margin-top:4px;">Clear all filters</button>
+  </aside>
+
+  <main>
+    <div class="toolbar">
+      <div class="active-filters" id="activeFilters"></div>
+      <select class="sort-select" id="sortSelect">
+        <option value="name">Sort: Last name A–Z</option>
+        <option value="school">Sort: School A–Z</option>
+        <option value="category">Sort: Category</option>
+      </select>
+    </div>
+    <div class="grid" id="grid"></div>
+    <div class="empty-state" id="emptyState" style="display:none;">
+      <h2>No contacts match</h2>
+      <p>Try clearing a filter or adjusting your search.</p>
+    </div>
+  </main>
+</div>
+
+<div class="overlay" id="overlay">
+  <div class="modal" id="modal"></div>
+</div>
+
+<script id="contact-data" type="application/json">[{"id":1,"category":"Current Mentor","name":"Samantha King","school":"Shea High School","district":"Pawtucket","email":"Samantha King (kings@psdri.net)","fields":{"Contact":"Samantha King (kings@psdri.net)","Grade Level":"High School","Discipline":"Culinary?","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Other","High School","Culinary?"],"notes":""},{"id":2,"category":"Current Mentor","name":"Caitlin Barry","school":"Brooklyn Friends School","district":"New York City","email":"caitlinqbarry@gmail.com","fields":{"Contact":"caitlinqbarry@gmail.com","Grade Level":"High School","Discipline":"English","Partner/Affiliate/Other":"Other","Alumni Year":"2010","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"y","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Alumni","Other","High School","English","26-27 Summer Eligible"],"notes":"Was middle school, now is high school"},{"id":3,"category":"Current Mentor","name":"Kelly Sierra","school":"Calcultt Middle School","district":"Central Falls","email":"sierrak@cfschools.net","fields":{"Contact":"sierrak@cfschools.net","Grade Level":"High School","Discipline":"English","Partner/Affiliate/Other":"Affiliate","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"y","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Affiliate","High School","English","26-27 Summer Eligible"],"notes":""},{"id":4,"category":"Current Mentor","name":"Catherine Anderson","school":"Central High School","district":"Providence","email":"andersonc@cfschools.net","fields":{"Contact":"andersonc@cfschools.net","Grade Level":"Middle School","Discipline":"English","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"y","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":"y"},"tags":["Current Mentor","Ever Mentored","Other","Middle School","English","25-26 Induction","24-25 Induction"],"notes":"ELA 7-8"},{"id":5,"category":"Current Mentor","name":"Lawless Sheila","school":"Central Falls High School","district":"Central Falls","email":"lawlesss@cfschools.net","fields":{"Contact":"lawlesss@cfschools.net","Grade Level":"High School","Discipline":"English","Partner/Affiliate/Other":"Partner","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"y","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Partner","High School","English","26-27 Summer Eligible"],"notes":"ESL focus (could do ELA?)"},{"id":6,"category":"Current Mentor","name":"Tasche Bryant","school":"Blackstone Academy Charter School","district":"Blackstone Academy Charter School","email":"tbryant@blackstoneacademy.org","fields":{"Contact":"tbryant@blackstoneacademy.org","Grade Level":"High School","Discipline":"English","Partner/Affiliate/Other":"Partner","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"y","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Ever Mentored","Partner","High School","English","25-26 Residency"],"notes":""},{"id":7,"category":"Current Mentor","name":"Crystal Diaz","school":"Blackstone Academy Charter School","district":"Blackstone Academy Charter School","email":"cdiaz@blackstoneacademy.org","fields":{"Contact":"cdiaz@blackstoneacademy.org","Grade Level":"High School","Discipline":"English","Partner/Affiliate/Other":"Partner","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","POC","Ever Mentored","Partner","High School","English"],"notes":""},{"id":8,"category":"Current Mentor","name":"V Ha","school":"Blackstone Academy Charter School","district":"Blackstone Academy Charter School","email":"vha@blackstoneacademy.org","fields":{"Contact":"vha@blackstoneacademy.org","Grade Level":"High School","Discipline":"English","Partner/Affiliate/Other":"Partner","Alumni Year":"2016","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","POC","Alumni","Ever Mentored","Partner","High School","English"],"notes":""},{"id":9,"category":"Current Mentor","name":"Erin Malcolm","school":"Blackstone Academy Charter School","district":"Blackstone Academy Charter School","email":"emalcolm@blackstoneacademy.org","fields":{"Contact":"emalcolm@blackstoneacademy.org","Grade Level":"High School","Discipline":"English","Partner/Affiliate/Other":"Partner","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"y","25-26 Induction":"n","26-27 Summer Eligible":"n","26-27 Residency Eligible":"y","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Ever Mentored","Partner","High School","English","25-26 Residency","26-27 Residency Eligible"],"notes":""},{"id":10,"category":"Current Mentor","name":"Jess Medeiros","school":"Blackstone Academy Charter School","district":"Blackstone Academy Charter School","email":"jmedeiros@blackstoneacademy.org","fields":{"Contact":"jmedeiros@blackstoneacademy.org","Grade Level":"High School","Discipline":"English","Partner/Affiliate/Other":"Partner","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Ever Mentored","Partner","High School","English"],"notes":"Always love working with Brown, but I'm a literacy coach now, so I'm not sure it's the right fit this time around. Maybe in the future!literacy specialist"},{"id":11,"category":"Current Mentor","name":"Anna Kuperman","school":"Classical High School","district":"PPSD","email":"Anna.Kuperman@ppsd.org","fields":{"Contact":"Anna.Kuperman@ppsd.org","Grade Level":"High School","Discipline":"English","Partner/Affiliate/Other":"Other","Alumni Year":"1997","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"y","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Alumni","Ever Mentored","Other","High School","English","26-27 Summer Eligible"],"notes":""},{"id":12,"category":"Current Mentor","name":"Lucy Mercado","school":"Classical High School","district":"PPSD","email":"Lucy.Mercado@ppsd.org","fields":{"Contact":"Lucy.Mercado@ppsd.org","Grade Level":"High School","Discipline":"English","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"y","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","POC","Ever Mentored","Other","High School","English","26-27 Summer Eligible"],"notes":""},{"id":13,"category":"Current Mentor","name":"Alyssa Healy","school":"E-Cubed Academy","district":"PPSD","email":"alyssa.healy@ppsd.org","fields":{"Contact":"alyssa.healy@ppsd.org","Grade Level":"High School","Discipline":"English","Partner/Affiliate/Other":"Affiliate","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"y","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Ever Mentored","Affiliate","High School","English","26-27 Summer Eligible"],"notes":"Please address correspondence instead to david.pineault@ppsd.org. PBDA inclusion; AP english Language"},{"id":14,"category":"Current Mentor","name":"Georgie Drew","school":"Nathaneal Greene Middle School","district":"PPSD","email":"georgie.drew@ppsd.org","fields":{"Contact":"georgie.drew@ppsd.org","Grade Level":"Middle School","Discipline":"English","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Other","Middle School","English"],"notes":"ELA Dept Chair"},{"id":15,"category":"Current Mentor","name":"Jamie Faith","school":"Classical High School","district":"PPSD","email":"jamiefaith@gmail.com","fields":{"Contact":"jamiefaith@gmail.com","Grade Level":"High School","Discipline":"English","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"y","25-26 Induction":"n","26-27 Summer Eligible":"n","26-27 Residency Eligible":"y","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Ever Mentored","Other","High School","English","25-26 Residency","26-27 Residency Eligible"],"notes":""},{"id":16,"category":"Current Mentor","name":"Hanna Hill","school":"Central Falls High School","district":"Central Falls","email":"","fields":{"Contact":"","Grade Level":"High School","Discipline":"English","Partner/Affiliate/Other":"Partner","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","MLL Focus","Partner","High School","English"],"notes":"?"},{"id":17,"category":"Current Mentor","name":"Kara Iafrate","school":"Central Falls High School","district":"Central Falls","email":"iafratek@cfschools.net","fields":{"Contact":"iafratek@cfschools.net","Grade Level":"High School","Discipline":"English","Partner/Affiliate/Other":"Partner","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"y","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Ever Mentored","Partner","High School","English","25-26 Residency"],"notes":"9th"},{"id":18,"category":"Current Mentor","name":"Bianca Parenteau","school":"Central Falls High School","district":"Central Falls","email":"corriveaub@cfschools.net","fields":{"Contact":"corriveaub@cfschools.net","Grade Level":"High School","Discipline":"English","Partner/Affiliate/Other":"Partner","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Ever Mentored","Partner","High School","English"],"notes":"coaching?"},{"id":19,"category":"Current Mentor","name":"Mike Johnson","school":"E-Cubed Academy","district":"PPSD","email":"Michael.Johnson@ppsd.org","fields":{"Contact":"Michael.Johnson@ppsd.org","Grade Level":"High School","Discipline":"English","Partner/Affiliate/Other":"Affiliate","Alumni Year":"2001","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"y","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"y","24-25 Induction":""},"tags":["Current Mentor","Alumni","Ever Mentored","Affiliate","High School","English","26-27 Summer Eligible","24-25 School Year"],"notes":"Thanks! English 3 MLL Inclusion"},{"id":20,"category":"Current Mentor","name":"Emmanual Ramos","school":"Central Falls HIgh School","district":"Central Falls","email":"ramosem@cfschools.net","fields":{"Contact":"ramosem@cfschools.net","Grade Level":"High School","Discipline":"English","Partner/Affiliate/Other":"Partner","Alumni Year":"","25-26 Summer":"y","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"y","24-25 School Year":"y","24-25 Induction":""},"tags":["Current Mentor","POC","Ever Mentored","Partner","High School","English","25-26 Summer","24-25 Summer","24-25 School Year"],"notes":"Eng 9"},{"id":21,"category":"Current Mentor","name":"Emily Hopkins","school":"Beacon Charter School","district":"Beacon Charter School","email":"emily_hopkins1@alumni.brown.edu","fields":{"Contact":"emily_hopkins1@alumni.brown.edu","Grade Level":"High School","Discipline":"English","Partner/Affiliate/Other":"Other","Alumni Year":"2018","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"y","24-25 School Year":"n","24-25 Induction":""},"tags":["Current Mentor","Alumni","Ever Mentored","Other","High School","English","24-25 Summer"],"notes":""},{"id":22,"category":"Current Mentor","name":"Mary Sue Saint George","school":"Central Falls High School","district":"Central Falls","email":"stgeorgem@cfschools.net","fields":{"Contact":"stgeorgem@cfschools.net","Grade Level":"High School","Discipline":"English","Partner/Affiliate/Other":"Partner","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Partner","High School","English"],"notes":"??"},{"id":23,"category":"Current Mentor","name":"Lynn Card-Kohansi","school":"East Providence High School","district":"East Providence","email":"lcardkohanski@epschoolsri.com","fields":{"Contact":"lcardkohanski@epschoolsri.com","Grade Level":"High School","Discipline":"English","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"y","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Other","High School","English","26-27 Summer Eligible"],"notes":"9th grade and 11th grade, organized, honors and collab; great with feedback"},{"id":24,"category":"Current Mentor","name":"D'Orsi Jessica","school":"East Providence High School","district":"East Providence","email":"jdorsi@epschoolsri.com","fields":{"Contact":"jdorsi@epschoolsri.com","Grade Level":"High School","Discipline":"English","Partner/Affiliate/Other":"Affiliate","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"y","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","MLL Focus","Affiliate","High School","English","26-27 Summer Eligible"],"notes":"English MLL"},{"id":25,"category":"Current Mentor","name":"Mary St. George","school":"Central Falls High School","district":"Central Falls","email":"","fields":{"Contact":"","Grade Level":"High School","Discipline":"English","Partner/Affiliate/Other":"Partner","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Ever Mentored","Partner","High School","English"],"notes":""},{"id":26,"category":"Current Mentor","name":"Sofia Dias","school":"Lincoln School","district":"Private","email":"sofia_dias@alumni.brown.edu","fields":{"Contact":"sofia_dias@alumni.brown.edu","Grade Level":"High School","Discipline":"English","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"y","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Ever Mentored","Other","High School","English","26-27 Summer Eligible"],"notes":""},{"id":27,"category":"Current Mentor","name":"Kyla Cornier","school":"East Providence High School","district":"East Providence","email":"kcornier@epschoolsri.com","fields":{"Contact":"kcornier@epschoolsri.com","Grade Level":"High School","Discipline":"English","Partner/Affiliate/Other":"Affiliate","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","MLL Focus","Affiliate","High School","English"],"notes":""},{"id":28,"category":"Current Mentor","name":"Samantha Marshall","school":"Shea High School","district":"Pawtucket","email":"marshalls@psdri.net","fields":{"Contact":"marshalls@psdri.net","Grade Level":"High School","Discipline":"English","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Other","High School","English"],"notes":"Chair ELA Dept"},{"id":29,"category":"Current Mentor","name":"Danika Hallum","school":"East Providence High School","district":"East Providence","email":"dhallam@epschoolsri.com","fields":{"Contact":"dhallam@epschoolsri.com","Grade Level":"High School","Discipline":"English","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Other","High School","English"],"notes":"9th grade; British Literature for seniors"},{"id":30,"category":"Current Mentor","name":"Nora Pace","school":"The Greene School","district":"The Greene School","email":"eleanor_pace@alumni.brown.edu","fields":{"Contact":"eleanor_pace@alumni.brown.edu","Grade Level":"High School","Discipline":"English","Partner/Affiliate/Other":"Other","Alumni Year":"2018","25-26 Summer":"m","25-26 Residency":"n","25-26 Induction":"y","26-27 Summer Eligible":"y","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"y","24-25 School Year":"n","24-25 Induction":"y"},"tags":["Current Mentor","Alumni","Ever Mentored","Other","High School","English","25-26 Induction","26-27 Summer Eligible","24-25 Summer","24-25 Induction"],"notes":"I'll be working with Laura over the summer and fall as her sabbatical replacement, and we will consider whether I should also take a student teacher. Thanks!"},{"id":31,"category":"Current Mentor","name":"Stephanie Morrison","school":"E-Cubed Academy","district":"PPSD","email":"stephanie.morrison@ppsd.org","fields":{"Contact":"stephanie.morrison@ppsd.org","Grade Level":"High School","Discipline":"English","Partner/Affiliate/Other":"Affiliate","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"y","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Ever Mentored","Affiliate","High School","English","25-26 Residency"],"notes":"English 2 MLL Inclusion"},{"id":32,"category":"Current Mentor","name":"Kate Potts","school":"East Providence High School","district":"East Providence","email":"kpotts@epschoolsri.com","fields":{"Contact":"kpotts@epschoolsri.com","Grade Level":"High School","Discipline":"English","Partner/Affiliate/Other":"Affiliate","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Affiliate","High School","English"],"notes":"prioritize visits"},{"id":33,"category":"Current Mentor","name":"Vanessa O'Driscoll","school":"Wheeler School","district":"Private","email":"vanessaodrisco l@wheelerschool.org","fields":{"Contact":"vanessaodrisco l@wheelerschool.org","Grade Level":"Private","Discipline":"English","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Ever Mentored","Other","Private","English"],"notes":""},{"id":34,"category":"Current Mentor","name":"Kaleen O'Leary","school":"DelSesto Middle School","district":"PPSD","email":"kaleen.oleary@ppsd.org","fields":{"Contact":"kaleen.oleary@ppsd.org","Grade Level":"Middle School","Discipline":"English","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Other","Middle School","English"],"notes":"Hi! I think I may be going to Japan this summer for the first week of BSHS so I am not sure if I will be able to join this summer but keep me in mind for the future. Also, I know Brown typically doesn't do student teaching placements at schools outside of PPSD but if that changes, I'd love to have a student teacher anytime."},{"id":35,"category":"Current Mentor","name":"Meg Adler","school":"Wheeler School (Hamilton)","district":"Private","email":"megadler@wheelerschool.org","fields":{"Contact":"megadler@wheelerschool.org","Grade Level":"High School","Discipline":"English","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"m","26-27 Summer Eligible":"y","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"n","24-25 School Year":"n","24-25 Induction":"n"},"tags":["Current Mentor","Other","High School","English","26-27 Summer Eligible"],"notes":"Literacy Specialist (Oliver ONeil Recommended for Induction)"},{"id":36,"category":"Current Mentor","name":"Mary Sorice","school":"East Providence High School","district":"East Providence","email":"msorice@epschoolsri.com","fields":{"Contact":"msorice@epschoolsri.com","Grade Level":"High School","Discipline":"English","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Other","High School","English"],"notes":"10th and 11th grade; kind and bubbly; direct feedback"},{"id":37,"category":"Current Mentor","name":"Samantha Reback","school":"East Greenwich High School","district":"East Greenwich","email":"sreback@egsd.net","fields":{"Contact":"sreback@egsd.net","Grade Level":"High School","Discipline":"English","Partner/Affiliate/Other":"Other","Alumni Year":"2022?","25-26 Summer":"y","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"n","24-25 School Year":"n","24-25 Induction":""},"tags":["Current Mentor","Alumni","Ever Mentored","Other","High School","English","25-26 Summer"],"notes":"From late June until late July of this year, I have 3 weddings and a bachelorette, so I will be out of town/occupied most Fridays and some Mondays, and therefore unavailable to mentor :(. But I would LOVE to be back next summer and for other opportunities (PINOP?) throughout the year!"},{"id":38,"category":"Current Mentor","name":"Sarah Bradley","school":"Hope High School","district":"PPSD","email":"Sarah.Bradley@ppsd.org","fields":{"Contact":"Sarah.Bradley@ppsd.org","Grade Level":"High School","Discipline":"English","Partner/Affiliate/Other":"Partner","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"y","25-26 Induction":"n","26-27 Summer Eligible":"n","26-27 Residency Eligible":"y","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Ever Mentored","Partner","High School","English","25-26 Residency","26-27 Residency Eligible"],"notes":"Ninth grade English; Developmental Writing"},{"id":39,"category":"Current Mentor","name":"Maya Bush","school":"Hope High School","district":"PPSD","email":"maya.bush@ppsd.org","fields":{"Contact":"maya.bush@ppsd.org","Grade Level":"High School","Discipline":"English","Partner/Affiliate/Other":"Partner","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Partner","High School","English"],"notes":"My role for the 26-27 school year is General Interventionist (literacy and math). Interventionist (not a traditional classroom teacher, would this be of interest?)"},{"id":40,"category":"Current Mentor","name":"Jonathan Goodman","school":"Hope High School","district":"PPSD","email":"jonathan.goodman@ppsd.org","fields":{"Contact":"jonathan.goodman@ppsd.org","Grade Level":"High School","Discipline":"English","Partner/Affiliate/Other":"Partner","Alumni Year":"1989","25-26 Summer":"n","25-26 Residency":"y","25-26 Induction":"y","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"y","24-25 Induction":"y"},"tags":["Current Mentor","Alumni","Ever Mentored","Partner","High School","English","25-26 Residency","25-26 Induction","24-25 School Year","24-25 Induction"],"notes":""},{"id":41,"category":"Current Mentor","name":"Kathleen Johnston","school":"Hope High School","district":"PPSD","email":"Kathleen.Johnston@ppsd.org","fields":{"Contact":"Kathleen.Johnston@ppsd.org","Grade Level":"High School","Discipline":"English","Partner/Affiliate/Other":"Partner","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"y","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Ever Mentored","Partner","High School","English","25-26 Induction"],"notes":"URI Writing; Tenth grade honors English; Tenth grade English"},{"id":42,"category":"Current Mentor","name":"Victoria Nash","school":"Hope High School","district":"PPSD","email":"victoria.nash@ppsd.org","fields":{"Contact":"victoria.nash@ppsd.org","Grade Level":"High School","Discipline":"English","Partner/Affiliate/Other":"Partner","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Partner","High School","English"],"notes":""},{"id":43,"category":"Current Mentor","name":"Ciara Sing","school":"Hope High School","district":"PPSD","email":"ciara.sing@ppsd.org","fields":{"Contact":"ciara.sing@ppsd.org","Grade Level":"High School","Discipline":"English","Partner/Affiliate/Other":"Partner","Alumni Year":"2023","25-26 Summer":"n","25-26 Residency":"y","25-26 Induction":"n","26-27 Summer Eligible":"n","26-27 Residency Eligible":"y","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","MLL Focus","Alumni","Ever Mentored","Partner","High School","English","25-26 Residency","26-27 Residency Eligible"],"notes":"English (ELA/ELD (3/4) 9th and ELA Honors 2 (10th))"},{"id":44,"category":"Current Mentor","name":"Megan Thoma","school":"Hope High School","district":"PPSD","email":"megan.thoma@ppsd.org","fields":{"Contact":"megan.thoma@ppsd.org","Grade Level":"High School","Discipline":"English","Partner/Affiliate/Other":"Partner","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"y","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"y","24-25 School Year":"","24-25 Induction":"y"},"tags":["Current Mentor","Ever Mentored","Partner","High School","English","25-26 Residency","24-25 Summer","24-25 Induction"],"notes":""},{"id":45,"category":"Current Mentor","name":"Rebecca Willner","school":"Hope High School","district":"PPSD","email":"rebecca.willner@ppsd.org","fields":{"Contact":"rebecca.willner@ppsd.org","Grade Level":"High School","Discipline":"English","Partner/Affiliate/Other":"Partner","Alumni Year":"2013","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"y","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Alumni","Ever Mentored","Partner","High School","English","25-26 Induction"],"notes":"Tenth and eleventh grade English"},{"id":46,"category":"Current Mentor","name":"Luke Anderson","school":"Moses Brown","district":"Private","email":"landerson@mosesbrown.org","fields":{"Contact":"landerson@mosesbrown.org","Grade Level":"High School","Discipline":"English","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"y","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","POC","Ever Mentored","Other","High School","English","25-26 Induction"],"notes":"Not in a teaching role"},{"id":47,"category":"Current Mentor","name":"Olivia Bedford","school":"N/A","district":"N/A","email":"oliviacbedford@gmail.com","fields":{"Contact":"oliviacbedford@gmail.com","Grade Level":"High School","Discipline":"English","Partner/Affiliate/Other":"","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"y","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","POC","Ever Mentored","High School","English","25-26 Induction"],"notes":"Taught at BVP and Blackstone Academy; no longer teaching (but was subbing 2025-2026)"},{"id":48,"category":"Current Mentor","name":"Paul Petit","school":"Nathan Bishop Middle School","district":"PPSD","email":"paul.petit@providenceschools.org","fields":{"Contact":"paul.petit@providenceschools.org","Grade Level":"Middle School","Discipline":"History","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Other","Middle School","History"],"notes":"kr says maybe"},{"id":49,"category":"Current Mentor","name":"Erickson Sarah","school":"Central Falls High School","district":"Central Falls","email":"ericksons@cfschools.net","fields":{"Contact":"ericksons@cfschools.net","Grade Level":"High School","Discipline":"Math","Partner/Affiliate/Other":"Partner","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"y","25-26 Induction":"n","26-27 Summer Eligible":"y","26-27 Residency Eligible":"y","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Ever Mentored","Partner","High School","Math","25-26 Residency","26-27 Summer Eligible","26-27 Residency Eligible"],"notes":"Math--Algebra 1 and Geometry"},{"id":50,"category":"Current Mentor","name":"Sherrie Santos","school":"E-Cubed Academy","district":"PPSD","email":"Sherrie.Santos@ppsd.org","fields":{"Contact":"Sherrie.Santos@ppsd.org","Grade Level":"High School","Discipline":"Math","Partner/Affiliate/Other":"Affiliate","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"y","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","POC","Ever Mentored","Affiliate","High School","Math","26-27 Summer Eligible"],"notes":""},{"id":51,"category":"Current Mentor","name":"Scott Breault","school":"East Providence High School","district":"East Providence","email":"sbreault@epschoolsri.com","fields":{"Contact":"sbreault@epschoolsri.com","Grade Level":"High School","Discipline":"Math","Partner/Affiliate/Other":"Affiliate","Alumni Year":"","25-26 Summer":"y","25-26 Residency":"n","25-26 Induction":"y","26-27 Summer Eligible":"y","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"n","24-25 School Year":"","24-25 Induction":"y"},"tags":["Current Mentor","Ever Mentored","Affiliate","High School","Math","25-26 Summer","25-26 Induction","26-27 Summer Eligible","24-25 Induction"],"notes":"Prefer to mentor a MAT over working with the induction program but open to do both (as well as site leader)"},{"id":52,"category":"Current Mentor","name":"David Pineault","school":"Hope High School","district":"PPSD","email":"david.pineault@ppsd.org","fields":{"Contact":"david.pineault@ppsd.org","Grade Level":"High School","Discipline":"Math","Partner/Affiliate/Other":"Partner","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"y","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Partner","High School","Math","26-27 Summer Eligible"],"notes":""},{"id":53,"category":"Current Mentor","name":"Carissa Adams","school":"Nathaneal Greene Middle School","district":"PPSD","email":"Carissa.Adams@ppsd.org","fields":{"Contact":"Carissa.Adams@ppsd.org","Grade Level":"Middle School","Discipline":"Math","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Other","Middle School","Math"],"notes":""},{"id":54,"category":"Current Mentor","name":"Jonathan Beltran","school":"Central Falls High School","district":"Central Falls","email":"beltranj@cfschools.net","fields":{"Contact":"beltranj@cfschools.net","Grade Level":"High School","Discipline":"Math","Partner/Affiliate/Other":"Partner","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Partner","High School","Math"],"notes":"Math 9-12"},{"id":55,"category":"Current Mentor","name":"Patricia Maia","school":"Nathaneal Greene Middle School","district":"PPSD","email":"patricia.maia@ppsd.org","fields":{"Contact":"patricia.maia@ppsd.org","Grade Level":"Middle School","Discipline":"Math","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"y","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Other","Middle School","Math","26-27 Summer Eligible"],"notes":"Math Dept. Chair"},{"id":56,"category":"Current Mentor","name":"Alyssa Church","school":"Blackstone Valley Prep Junior High School","district":"Blackstone Valley Prep Charter Schools","email":"alyssa.church@bvpri.org","fields":{"Contact":"alyssa.church@bvpri.org","Grade Level":"High School","Discipline":"Math","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"n","26-27 Residency Eligible":"y","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Ever Mentored","Other","High School","Math","26-27 Residency Eligible"],"notes":""},{"id":57,"category":"Current Mentor","name":"Norcliffe Davidson","school":"DelSesto Middle School","district":"PPSD","email":"norcliffe.davidson@ppsd.org","fields":{"Contact":"norcliffe.davidson@ppsd.org","Grade Level":"Middle School","Discipline":"Math","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Other","Middle School","Math"],"notes":""},{"id":58,"category":"Current Mentor","name":"Gregg DeMaria","school":"Nathan Bishop Middle School","district":"PPSD","email":"gregg.demaria@ppsd.org","fields":{"Contact":"gregg.demaria@ppsd.org","Grade Level":"Middle School","Discipline":"Math","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Other","Middle School","Math"],"notes":""},{"id":59,"category":"Current Mentor","name":"Katie Desrosiers","school":"Blackstone Academy Charter School","district":"Blackstone Academy Charter School","email":"kdesrosiers@blackstoneacademy.org","fields":{"Contact":"kdesrosiers@blackstoneacademy.org","Grade Level":"High School","Discipline":"Math","Partner/Affiliate/Other":"Partner","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"y","25-26 Induction":"n","26-27 Summer Eligible":"n","26-27 Residency Eligible":"y","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"y","24-25 Induction":""},"tags":["Current Mentor","Ever Mentored","Partner","High School","Math","25-26 Residency","26-27 Residency Eligible","24-25 School Year"],"notes":""},{"id":60,"category":"Current Mentor","name":"Bryant Estrada","school":"Blackstone Academy Charter School","district":"Blackstone Academy Charter School","email":"bestrada@blackstoneacademy.org","fields":{"Contact":"bestrada@blackstoneacademy.org","Grade Level":"High School","Discipline":"Math","Partner/Affiliate/Other":"Partner","Alumni Year":"2013 (undergrad)","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","POC","MLL Focus","Alumni","Ever Mentored","Partner","High School","Math"],"notes":"mll coordinator"},{"id":61,"category":"Current Mentor","name":"Deborah Fox","school":"Nathaneal Greene Middle School","district":"PPSD","email":"Deborah.Fox@ppsd.org","fields":{"Contact":"Deborah.Fox@ppsd.org","Grade Level":"Middle School","Discipline":"Math","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Other","Middle School","Math"],"notes":""},{"id":62,"category":"Current Mentor","name":"Kelly Francisco","school":"Calcultt Middle School","district":"Central Falls","email":"franciscok@cfschools.net","fields":{"Contact":"franciscok@cfschools.net","Grade Level":"Middle School","Discipline":"Math","Partner/Affiliate/Other":"Affiliate","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"y","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Ever Mentored","Affiliate","Middle School","Math","25-26 Residency"],"notes":"8th"},{"id":63,"category":"Current Mentor","name":"Pam Garabedian","school":"Central Falls High School","district":"Central Falls","email":"garabedianp@cfschools.net","fields":{"Contact":"garabedianp@cfschools.net","Grade Level":"High School","Discipline":"Math","Partner/Affiliate/Other":"Partner","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Ever Mentored","Partner","High School","Math"],"notes":"Math ESL - Coaching role"},{"id":64,"category":"Current Mentor","name":"Jessie Gilbert","school":"Nathan Bishop Middle School","district":"PPSD","email":"Jessie.Gilbert@ppsd.org","fields":{"Contact":"Jessie.Gilbert@ppsd.org","Grade Level":"Middle School","Discipline":"Math","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"y","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Ever Mentored","Other","Middle School","Math","25-26 Induction"],"notes":""},{"id":65,"category":"Current Mentor","name":"Elizabeth Griffin","school":"Hope High School","district":"PPSD","email":"elizabeth.griffin@ppsd.org","fields":{"Contact":"elizabeth.griffin@ppsd.org","Grade Level":"High School","Discipline":"Math","Partner/Affiliate/Other":"Partner","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"y","25-26 Induction":"n","26-27 Summer Eligible":"n","26-27 Residency Eligible":"y","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Ever Mentored","Partner","High School","Math","25-26 Residency","26-27 Residency Eligible"],"notes":"Statistics"},{"id":66,"category":"Current Mentor","name":"Therese Jungels","school":"Hope High School","district":"PPSD","email":"Therese.Jungels@ppsd.org","fields":{"Contact":"Therese.Jungels@ppsd.org","Grade Level":"High School","Discipline":"Math","Partner/Affiliate/Other":"Partner","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Ever Mentored","Partner","High School","Math"],"notes":"Therese is now a long term sub in special education math"},{"id":67,"category":"Current Mentor","name":"Carly Keating","school":"Nathaneal Greene Middle School","district":"PPSD","email":"Carly.Keating@ppsd.org","fields":{"Contact":"Carly.Keating@ppsd.org","Grade Level":"Middle School","Discipline":"Math","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Other","Middle School","Math"],"notes":""},{"id":68,"category":"Current Mentor","name":"Noa LaMaskin","school":"Central Falls High School","district":"Central Falls","email":"lamaskinn@cfschools.net","fields":{"Contact":"lamaskinn@cfschools.net","Grade Level":"High School","Discipline":"Math","Partner/Affiliate/Other":"Partner","Alumni Year":"2023","25-26 Summer":"n","25-26 Residency":"y","25-26 Induction":"n","26-27 Summer Eligible":"n","26-27 Residency Eligible":"y","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Alumni","Ever Mentored","Partner","High School","Math","25-26 Residency","26-27 Residency Eligible"],"notes":"Math (AP Calculus and MLL/Non-MLL Algebra 1)"},{"id":69,"category":"Current Mentor","name":"Kesley Lucas","school":"McCourt Middle School","district":"Cumberland","email":"lucask42@gmail.com","fields":{"Contact":"lucask42@gmail.com","Grade Level":"Middle School","Discipline":"Math","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"y","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"y","24-25 School Year":"n","24-25 Induction":""},"tags":["Current Mentor","Ever Mentored","Other","Middle School","Math","25-26 Summer","24-25 Summer"],"notes":"I'm pregnant and due in late May so I won't be avaiable this summer, but I would love to come back summer of 2027!"},{"id":70,"category":"Current Mentor","name":"Nicole Masse","school":"East Providence High School","district":"East Providence","email":"nmasse@epschools.com","fields":{"Contact":"nmasse@epschools.com","Grade Level":"High School","Discipline":"Math","Partner/Affiliate/Other":"Affiliate","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"y","24-25 Induction":""},"tags":["Current Mentor","MLL Focus","Ever Mentored","Affiliate","High School","Math","24-25 School Year"],"notes":""},{"id":71,"category":"Current Mentor","name":"Kathy Maynard","school":"Shea High School","district":"Pawtucket","email":"maynardk@psdri.net","fields":{"Contact":"maynardk@psdri.net","Grade Level":"High School","Discipline":"Math","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Other","High School","Math"],"notes":""},{"id":72,"category":"Current Mentor","name":"Chris Monschauer","school":"Brookline High School","district":"Brookline","email":"christopher.monschauer@knowlesteachers.org","fields":{"Contact":"christopher.monschauer@knowlesteachers.org","Grade Level":"High School","Discipline":"Math","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"y","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":"y"},"tags":["Current Mentor","Other","High School","Math","25-26 Induction","24-25 Induction"],"notes":"Math + Special Ed"},{"id":73,"category":"Current Mentor","name":"Ryan Mullen","school":"East Providence High School","district":"East Providence","email":"rmullen@epschoolsri.com","fields":{"Contact":"rmullen@epschoolsri.com","Grade Level":"High School","Discipline":"Math","Partner/Affiliate/Other":"Affiliate","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Affiliate","High School","Math"],"notes":""},{"id":74,"category":"Current Mentor","name":"Heather Polo","school":"Nathaneal Greene Middle School","district":"PPSD","email":"Heather.Polo@ppsd.org","fields":{"Contact":"Heather.Polo@ppsd.org","Grade Level":"Middle School","Discipline":"Math","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Other","Middle School","Math"],"notes":""},{"id":75,"category":"Current Mentor","name":"Sarah Rainville","school":"Central Falls High School","district":"Central Falls","email":"rainvilles@cfschools.net","fields":{"Contact":"rainvilles@cfschools.net","Grade Level":"High School","Discipline":"Math","Partner/Affiliate/Other":"Partner","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Partner","High School","Math"],"notes":""},{"id":76,"category":"Current Mentor","name":"Kimberlie Rossi","school":"Nathaneal Greene Middle School","district":"PPSD","email":"Kimberlie.Rossi@ppsd.org","fields":{"Contact":"Kimberlie.Rossi@ppsd.org","Grade Level":"Middle School","Discipline":"Math","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Other","Middle School","Math"],"notes":""},{"id":77,"category":"Current Mentor","name":"Sherrie Santos","school":"E-Cubed Academy","district":"PPSD","email":"sherrie.santos@ppsd.org","fields":{"Contact":"sherrie.santos@ppsd.org","Grade Level":"High School","Discipline":"Math","Partner/Affiliate/Other":"Affiliate","Alumni Year":"","25-26 Summer":"y","25-26 Residency":"y","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"y","24-25 Induction":""},"tags":["Current Mentor","POC","Ever Mentored","Affiliate","High School","Math","25-26 Summer","25-26 Residency","24-25 School Year"],"notes":""},{"id":78,"category":"Current Mentor","name":"Katie Somerville","school":"Blackstone Academy Charter School","district":"Blackstone Academy Charter School","email":"ksomerville@blackstoneacademy.org","fields":{"Contact":"ksomerville@blackstoneacademy.org","Grade Level":"High School","Discipline":"Math","Partner/Affiliate/Other":"Partner","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Partner","High School","Math"],"notes":""},{"id":79,"category":"Current Mentor","name":"Vivian Vargas","school":"E-Cubed Academy","district":"PPSD","email":"vivian.vargas@ppsd.org","fields":{"Contact":"vivian.vargas@ppsd.org","Grade Level":"High School","Discipline":"Math","Partner/Affiliate/Other":"Affiliate","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","POC","Ever Mentored","Affiliate","High School","Math"],"notes":"AP-PreCalculus,Statistics"},{"id":80,"category":"Current Mentor","name":"Paul Pasaba","school":"Blackstone Academy Charter School","district":"Blackstone Academy Charter School","email":"ppasaba@blackstoneacademy.org","fields":{"Contact":"ppasaba@blackstoneacademy.org","Grade Level":"High School","Discipline":"Math - CS","Partner/Affiliate/Other":"Partner","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"y","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"y","24-25 Induction":""},"tags":["Current Mentor","POC","Ever Mentored","Partner","High School","Math - CS","25-26 Residency","24-25 School Year"],"notes":""},{"id":81,"category":"Current Mentor","name":"Kate Tolman","school":"Calcultt Middle School","district":"Central Falls","email":"tolmank@cfschools.net","fields":{"Contact":"tolmank@cfschools.net","Grade Level":"Middle School","Discipline":"Science","Partner/Affiliate/Other":"Affiliate","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"y","26-27 Residency Eligible":"y","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Ever Mentored","Affiliate","Middle School","Science","26-27 Summer Eligible","26-27 Residency Eligible"],"notes":"I may be moving to Central Falls High School for next school year (biology) but would still be willing to have a student teacher! Science 7-8"},{"id":82,"category":"Current Mentor","name":"Alicia Salisbury","school":"Classical High School","district":"PPSD","email":"alicia.salisbury@ppsd.org","fields":{"Contact":"alicia.salisbury@ppsd.org","Grade Level":"High School","Discipline":"Science","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"y","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Ever Mentored","Other","High School","Science","26-27 Summer Eligible"],"notes":"Biology"},{"id":83,"category":"Current Mentor","name":"Natalie Tarr","school":"East Providence High School","district":"East Providence","email":"natalie_tarr@alumni.brown.edu","fields":{"Contact":"natalie_tarr@alumni.brown.edu","Grade Level":"High School","Discipline":"Science","Partner/Affiliate/Other":"Affiliate","Alumni Year":"2020?","25-26 Summer":"","25-26 Residency":"","25-26 Induction":"","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Alumni","Affiliate","High School","Science"],"notes":""},{"id":84,"category":"Current Mentor","name":"Rebecca Allison","school":"Federal","district":"Federal","email":"rkallison01@gmail.com","fields":{"Contact":"rkallison01@gmail.com","Grade Level":"High School","Discipline":"Science","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"y","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"y","24-25 School Year":"n","24-25 Induction":""},"tags":["Current Mentor","Ever Mentored","Other","High School","Science","25-26 Summer","24-25 Summer"],"notes":""},{"id":85,"category":"Current Mentor","name":"Katie Bowers","school":"Classical High School","district":"PPSD","email":"","fields":{"Contact":"","Grade Level":"High School","Discipline":"Science","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Ever Mentored","Other","High School","Science"],"notes":""},{"id":86,"category":"Current Mentor","name":"Kayla Breault","school":"East Providence High School","district":"East Providence","email":"kbreault@epschoolsri.com","fields":{"Contact":"kbreault@epschoolsri.com","Grade Level":"High School","Discipline":"Science","Partner/Affiliate/Other":"Affiliate","Alumni Year":"2021?","25-26 Summer":"y","25-26 Residency":"y","25-26 Induction":"n","26-27 Summer Eligible":"y","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"n","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Alumni","Ever Mentored","Affiliate","High School","Science","25-26 Summer","25-26 Residency","26-27 Summer Eligible"],"notes":"Chemistry"},{"id":87,"category":"Current Mentor","name":"Justin Cardinale","school":"Tolman High School","district":"Pawtucket","email":"","fields":{"Contact":"","Grade Level":"High School","Discipline":"Science","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Other","High School","Science"],"notes":"recommended may 25 by another mentor"},{"id":88,"category":"Current Mentor","name":"Ben Dietz","school":"DelSesto Middle School","district":"PPSD","email":"ben.dietz@ppsd.org","fields":{"Contact":"ben.dietz@ppsd.org","Grade Level":"Middle School","Discipline":"Science","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Other","Middle School","Science"],"notes":""},{"id":89,"category":"Current Mentor","name":"Molly Forte","school":"Calcultt Middle School","district":"Central Falls","email":"macdonaldm@cfschoolsnet","fields":{"Contact":"macdonaldm@cfschoolsnet","Grade Level":"Middle School","Discipline":"Science","Partner/Affiliate/Other":"Affiliate","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Ever Mentored","Affiliate","Middle School","Science"],"notes":"I will be out for a portion of the year on maternity leave but would be interested in future years. Science 7-8"},{"id":90,"category":"Current Mentor","name":"Joseph Gannon","school":"Nathaneal Greene Middle School","district":"PPSD","email":"joseph.gannon@ppsd.org","fields":{"Contact":"joseph.gannon@ppsd.org","Grade Level":"Middle School","Discipline":"Science","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Other","Middle School","Science"],"notes":"Science Dept. Chair"},{"id":91,"category":"Current Mentor","name":"Steven Martin","school":"Lincoln Middle School","district":"Lincoln","email":"martins@lincolnps.org","fields":{"Contact":"martins@lincolnps.org","Grade Level":"Middle School","Discipline":"Science","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"y","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"y","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"y","24-25 School Year":"n","24-25 Induction":""},"tags":["Current Mentor","Ever Mentored","Other","Middle School","Science","25-26 Summer","26-27 Summer Eligible","24-25 Summer"],"notes":"Please let me know if I will be a mentor teacher for BSHS as soon as possible.  Thank you in advance."},{"id":92,"category":"Current Mentor","name":"Haley Ramos","school":"E-Cubed Academy","district":"PPSD","email":"haley.ramos@ppsd.org","fields":{"Contact":"haley.ramos@ppsd.org","Grade Level":"High School","Discipline":"Science","Partner/Affiliate/Other":"Affiliate","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"y","25-26 Induction":"y","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":"y"},"tags":["Current Mentor","Ever Mentored","Affiliate","High School","Science","25-26 Residency","25-26 Induction","24-25 Induction"],"notes":"Biology & Anatomy"},{"id":93,"category":"Current Mentor","name":"Alvaro Reina","school":"Blackstone Academy Charter School","district":"Blackstone Academy Charter School","email":"areina@blackstoneacademy.org","fields":{"Contact":"areina@blackstoneacademy.org","Grade Level":"High School","Discipline":"Science","Partner/Affiliate/Other":"Partner","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","POC","Partner","High School","Science"],"notes":""},{"id":94,"category":"Current Mentor","name":"Denise Tate","school":"DelSesto Middle School","district":"PPSD","email":"denise.tate@ppsd.org","fields":{"Contact":"denise.tate@ppsd.org","Grade Level":"Middle School","Discipline":"Science","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"y","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","POC","Other","Middle School","Science","25-26 Induction"],"notes":""},{"id":95,"category":"Current Mentor","name":"Aaron Weinblatt","school":"Blackstone Academy Charter School","district":"Blackstone Academy Charter School","email":"aweinblatt@blackstoneacademy.org","fields":{"Contact":"aweinblatt@blackstoneacademy.org","Grade Level":"High School","Discipline":"Science","Partner/Affiliate/Other":"Partner","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"y","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Ever Mentored","Partner","High School","Science","25-26 Residency"],"notes":""},{"id":96,"category":"Current Mentor","name":"Danika Korpacz","school":"Central Falls High School","district":"Central Falls","email":"korpaczd@cfschools.net","fields":{"Contact":"korpaczd@cfschools.net","Grade Level":"High School","Discipline":"Science - Bio/Phys","Partner/Affiliate/Other":"Partner","Alumni Year":"","25-26 Summer":"y","25-26 Residency":"y","25-26 Induction":"n","26-27 Summer Eligible":"n","26-27 Residency Eligible":"y","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"y","24-25 Induction":""},"tags":["Current Mentor","Ever Mentored","Partner","High School","Science - Bio/Phys","25-26 Summer","25-26 Residency","26-27 Residency Eligible","24-25 School Year"],"notes":""},{"id":97,"category":"Current Mentor","name":"Kerri Valentine","school":"Central Falls High School","district":"Central Falls","email":"valentinek@cfschools.net","fields":{"Contact":"valentinek@cfschools.net","Grade Level":"High School","Discipline":"Science - Biology","Partner/Affiliate/Other":"Partner","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Ever Mentored","Partner","High School","Science - Biology"],"notes":""},{"id":98,"category":"Current Mentor","name":"Charlie Fisher","school":"Central Falls High School","district":"Central Falls","email":"fisherc@cfschools.net","fields":{"Contact":"fisherc@cfschools.net","Grade Level":"High School","Discipline":"Science - Chem","Partner/Affiliate/Other":"Partner","Alumni Year":"2021","25-26 Summer":"y","25-26 Residency":"n","25-26 Induction":"y","26-27 Summer Eligible":"y","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"y","24-25 Induction":""},"tags":["Current Mentor","Alumni","Ever Mentored","Partner","High School","Science - Chem","25-26 Summer","25-26 Induction","26-27 Summer Eligible","24-25 School Year"],"notes":""},{"id":99,"category":"Current Mentor","name":"Mark Dibiasio","school":"E-Cubed Academy","district":"PPSD","email":"mark.dibiasio@ppsd.org","fields":{"Contact":"mark.dibiasio@ppsd.org","Grade Level":"High School","Discipline":"Science - Chem","Partner/Affiliate/Other":"Affiliate","Alumni Year":"","25-26 Summer":"y","25-26 Residency":"y","25-26 Induction":"n","26-27 Summer Eligible":"y","26-27 Residency Eligible":"y","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"y","24-25 School Year":"y","24-25 Induction":""},"tags":["Current Mentor","Ever Mentored","Affiliate","High School","Science - Chem","25-26 Summer","25-26 Residency","26-27 Summer Eligible","26-27 Residency Eligible","24-25 Summer","24-25 School Year"],"notes":"Chemistry"},{"id":100,"category":"Current Mentor","name":"Alana Nelson","school":"East Providence High School","district":"East Providence","email":"anelson@epschoolsri.com","fields":{"Contact":"anelson@epschoolsri.com","Grade Level":"High School","Discipline":"Science - Chemistry","Partner/Affiliate/Other":"Affiliate","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Affiliate","High School","Science - Chemistry"],"notes":"philosophically not super aligned"},{"id":101,"category":"Current Mentor","name":"Catharine Sully","school":"Hope High School","district":"PPSD","email":"Catharine.Sully@ppsd.org","fields":{"Contact":"Catharine.Sully@ppsd.org","Grade Level":"High School","Discipline":"Science - Physics","Partner/Affiliate/Other":"Partner","Alumni Year":"2021","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"y","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Alumni","Ever Mentored","Partner","High School","Science - Physics","26-27 Summer Eligible"],"notes":""},{"id":102,"category":"Current Mentor","name":"Patricia Shiebler","school":"Paul Cuffee Charter School","district":"Paul Cuffee","email":"peshiebler@gmail.com","fields":{"Contact":"peshiebler@gmail.com","Grade Level":"High School","Discipline":"Science - Physics","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Other","High School","Science - Physics"],"notes":""},{"id":103,"category":"Current Mentor","name":"Tracy Edwards","school":"Blackstone Academy Charter School","district":"Blackstone Academy Charter School","email":"tedwards@blackstoneacademy.org","fields":{"Contact":"tedwards@blackstoneacademy.org","Grade Level":"High School","Discipline":"Science - Physics, Chemistry","Partner/Affiliate/Other":"Partner","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"y","25-26 Induction":"n","26-27 Summer Eligible":"maybe","26-27 Residency Eligible":"y","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Ever Mentored","Partner","High School","Science - Physics, Chemistry","25-26 Residency","26-27 Residency Eligible"],"notes":""},{"id":104,"category":"Current Mentor","name":"Allison Murray","school":"Central Falls High School","district":"Central Falls","email":"murraya@cfschools.net","fields":{"Contact":"murraya@cfschools.net","Grade Level":"High School","Discipline":"Science - Physics/CS","Partner/Affiliate/Other":"Partner","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"y","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Ever Mentored","Partner","High School","Science - Physics/CS","25-26 Residency"],"notes":"Computer Science, physical science (physics) , engineering"},{"id":105,"category":"Current Mentor","name":"Cassandra Marques","school":"Nathan Bishop Middle School","district":"PPSD","email":"Cassandra.MarquesLeach@ppsd.org","fields":{"Contact":"Cassandra.MarquesLeach@ppsd.org","Grade Level":"Middle School","Discipline":"Social Studies","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"y","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Other","Middle School","Social Studies","26-27 Summer Eligible"],"notes":""},{"id":106,"category":"Current Mentor","name":"Aspajo Andrea","school":"Central Falls High School","district":"Central Falls","email":"aspajoandrea@gmail.com","fields":{"Contact":"aspajoandrea@gmail.com","Grade Level":"High School","Discipline":"Social Studies","Partner/Affiliate/Other":"Partner","Alumni Year":"2023","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"y","26-27 Summer Eligible":"y","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","POC","MLL Focus","Alumni","Ever Mentored","Partner","High School","Social Studies","25-26 Induction","26-27 Summer Eligible"],"notes":"Given the population I serve (WIDA L1-L3), I would appreciate mentoring a prospective educator with a dedicated commitment to making social studies content accessible to MLLs, particularly newcomers. Bonus points if bilingual! Dual Language"},{"id":107,"category":"Current Mentor","name":"Fofana Mamadou","school":"Community Preparatory School","district":"Private","email":"mamadou_fofana@alumni.brown.edu","fields":{"Contact":"mamadou_fofana@alumni.brown.edu","Grade Level":"Middle School","Discipline":"Social Studies","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"y","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"y","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"n","24-25 School Year":"y","24-25 Induction":""},"tags":["Current Mentor","POC","Ever Mentored","Other","Middle School","Social Studies","25-26 Summer","26-27 Summer Eligible","24-25 School Year"],"notes":""},{"id":108,"category":"Current Mentor","name":"Ryan Connole (sp?)","school":"DelSesto Middle School","district":"PPSD","email":"ryan.connole@ppsd.org","fields":{"Contact":"ryan.connole@ppsd.org","Grade Level":"Middle School","Discipline":"Social Studies","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","MLL Focus","Other","Middle School","Social Studies"],"notes":"??"},{"id":109,"category":"Current Mentor","name":"Ethan Dimmock","school":"Central Falls High School","district":"Central Falls","email":"dimmocke@cfschools.net; wislockia@cfschools.net","fields":{"Contact":"dimmocke@cfschools.net; wislockia@cfschools.net","Grade Level":"High School","Discipline":"Social Studies","Partner/Affiliate/Other":"Partner","Alumni Year":"2022","25-26 Summer":"n","25-26 Residency":"y","25-26 Induction":"n","26-27 Summer Eligible":"n","26-27 Residency Eligible":"y","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"y","24-25 Induction":""},"tags":["Current Mentor","Alumni","Ever Mentored","Partner","High School","Social Studies","25-26 Residency","26-27 Residency Eligible","24-25 School Year"],"notes":"US History, Civics"},{"id":110,"category":"Current Mentor","name":"Jared Medeiros","school":"East Providence High School","district":"East Providence","email":"jmedeiros@epschoolsri.com","fields":{"Contact":"jmedeiros@epschoolsri.com","Grade Level":"High School","Discipline":"Social Studies","Partner/Affiliate/Other":"Affiliate","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"y","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"y","24-25 Induction":""},"tags":["Current Mentor","POC","MLL Focus","Ever Mentored","Affiliate","High School","Social Studies","26-27 Summer Eligible","24-25 School Year"],"notes":""},{"id":111,"category":"Current Mentor","name":"Greg Grossman","school":"Blackstone Academy Charter School","district":"Blackstone Academy Charter School","email":"ggrossman@blackstoneacademy.org","fields":{"Contact":"ggrossman@blackstoneacademy.org","Grade Level":"High School","Discipline":"Social Studies","Partner/Affiliate/Other":"Partner","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"y","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":"y"},"tags":["Current Mentor","Ever Mentored","Partner","High School","Social Studies","25-26 Residency","24-25 Induction"],"notes":""},{"id":112,"category":"Current Mentor","name":"Amanda Izzi","school":"East Providence High School","district":"East Providence","email":"aizzi@epschoolsri.com","fields":{"Contact":"aizzi@epschoolsri.com","Grade Level":"High School","Discipline":"Social Studies","Partner/Affiliate/Other":"Affiliate","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"y","25-26 Induction":"n","26-27 Summer Eligible":"n","26-27 Residency Eligible":"y","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"y","24-25 Induction":""},"tags":["Current Mentor","Ever Mentored","Affiliate","High School","Social Studies","25-26 Residency","26-27 Residency Eligible","24-25 School Year"],"notes":""},{"id":113,"category":"Current Mentor","name":"Eric Izzy","school":"North Providence High School","district":"North Providence","email":"eric.izzy@npsd.k12.ri.us","fields":{"Contact":"eric.izzy@npsd.k12.ri.us","Grade Level":"High School","Discipline":"Social Studies","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Ever Mentored","Other","High School","Social Studies"],"notes":"kr to double check"},{"id":114,"category":"Current Mentor","name":"Labbe Izzy","school":"The Learning Community Charter School","district":"The Learning Community Charter School","email":"","fields":{"Contact":"","Grade Level":"Middle School","Discipline":"Social Studies","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Ever Mentored","Other","Middle School","Social Studies"],"notes":""},{"id":115,"category":"Current Mentor","name":"Faith Jean","school":"East Providence High School","district":"East Providence","email":"fjean@epschoolsri.com","fields":{"Contact":"fjean@epschoolsri.com","Grade Level":"High School","Discipline":"Social Studies","Partner/Affiliate/Other":"Affiliate","Alumni Year":"","25-26 Summer":"y","25-26 Residency":"y","25-26 Induction":"n","26-27 Summer Eligible":"maybe","26-27 Residency Eligible":"y","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"n","24-25 School Year":"y","24-25 Induction":""},"tags":["Current Mentor","Ever Mentored","Affiliate","High School","Social Studies","25-26 Summer","25-26 Residency","26-27 Residency Eligible","24-25 School Year"],"notes":""},{"id":116,"category":"Current Mentor","name":"Katherine Jones","school":"Paul Cuffee Charter School","district":"Paul Cuffee","email":"kjones@paulcuffee.org","fields":{"Contact":"kjones@paulcuffee.org","Grade Level":"High School","Discipline":"Social Studies","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Other","High School","Social Studies"],"notes":""},{"id":117,"category":"Current Mentor","name":"Stacy Joslin","school":"Blackstone Academy Charter School","district":"Blackstone Academy Charter School","email":"sjoslin@blackstoneacademy.org","fields":{"Contact":"sjoslin@blackstoneacademy.org","Grade Level":"High School","Discipline":"Social Studies","Partner/Affiliate/Other":"Partner","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Ever Mentored","Partner","High School","Social Studies"],"notes":""},{"id":118,"category":"Current Mentor","name":"Grace King","school":"The Learning Community Charter School","district":"Learning Community","email":"geking124@gmail.com","fields":{"Contact":"geking124@gmail.com","Grade Level":"Middle School","Discipline":"Social Studies","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Ever Mentored","Other","Middle School","Social Studies"],"notes":""},{"id":119,"category":"Current Mentor","name":"John Morrow","school":"Hope High School","district":"PPSD","email":"john.morrow@ppsd.org","fields":{"Contact":"john.morrow@ppsd.org","Grade Level":"High School","Discipline":"Social Studies","Partner/Affiliate/Other":"Partner","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"y","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Ever Mentored","Partner","High School","Social Studies","26-27 Summer Eligible"],"notes":"AP African-American History; US History"},{"id":120,"category":"Current Mentor","name":"Ryan McIntyre","school":"DelSesto Middle School","district":"PPSD","email":"ryan.mcintyre@ppsd.org","fields":{"Contact":"ryan.mcintyre@ppsd.org","Grade Level":"Middle School","Discipline":"Social Studies","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","MLL Focus","Other","Middle School","Social Studies"],"notes":"??"},{"id":121,"category":"Current Mentor","name":"Caleigh Rockwal","school":"Hope High School","district":"PPSD","email":"caleigh.rockwal@ppsd.org","fields":{"Contact":"caleigh.rockwal@ppsd.org","Grade Level":"High School","Discipline":"Social Studies","Partner/Affiliate/Other":"Partner","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"y","26-27 Summer Eligible":"y","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Ever Mentored","Partner","High School","Social Studies","25-26 Induction","26-27 Summer Eligible"],"notes":"I'm interested in continuing to mentor in the induction program, especially if Oliver would like to continue that relationship. I don't have capacity to serve as an MAT mentor next year but am open to serving in future years"},{"id":122,"category":"Current Mentor","name":"Tim Olivio","school":"North Providence High School","district":"North Providence","email":"timothy.olivo@npsd.k12.ri.us","fields":{"Contact":"timothy.olivo@npsd.k12.ri.us","Grade Level":"High School","Discipline":"Social Studies","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"yes","24-25 School Year":"","24-25 Induction":"y"},"tags":["Current Mentor","Ever Mentored","Other","High School","Social Studies","24-25 Induction"],"notes":"summer mentor"},{"id":123,"category":"Current Mentor","name":"Susan Pangbord","school":"Nathaneal Greene Middle School","district":"PPSD","email":"susan.pangborn@ppsd.org","fields":{"Contact":"susan.pangborn@ppsd.org","Grade Level":"Middle School","Discipline":"Social Studies","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Other","Middle School","Social Studies"],"notes":"kr to double check"},{"id":124,"category":"Current Mentor","name":"Michelle Portilla","school":"The MET","district":"State","email":"mportilla10385@gmail.com","fields":{"Contact":"mportilla10385@gmail.com","Grade Level":"High School","Discipline":"Social Studies","Partner/Affiliate/Other":"Other","Alumni Year":"2009","25-26 Summer":"y","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"y","24-25 School Year":"n","24-25 Induction":""},"tags":["Current Mentor","POC","Alumni","Ever Mentored","Other","High School","Social Studies","25-26 Summer","24-25 Summer"],"notes":"summer mentor"},{"id":125,"category":"Current Mentor","name":"Risa Rainone","school":"Hope High School","district":"PPSD","email":"Risa.Rainone@ppsd.org","fields":{"Contact":"Risa.Rainone@ppsd.org","Grade Level":"High School","Discipline":"Social Studies","Partner/Affiliate/Other":"Partner","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Ever Mentored","Partner","High School","Social Studies"],"notes":"after several years of only psych, she will probably have some history classes next year"},{"id":126,"category":"Current Mentor","name":"Eric Fulford","school":"Paul Cuffee Charter School","district":"Paul Cuffee","email":"efulford@paulcuffee.org","fields":{"Contact":"efulford@paulcuffee.org","Grade Level":"High School","Discipline":"Social Studies","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"y","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Ever Mentored","Other","High School","Social Studies","26-27 Summer Eligible"],"notes":""},{"id":127,"category":"Current Mentor","name":"Heather Rodrigues","school":"Shea High School","district":"Pawtucket","email":"Rodriguesh@psdri.net","fields":{"Contact":"Rodriguesh@psdri.net","Grade Level":"High School","Discipline":"Social Studies","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Other","High School","Social Studies"],"notes":""},{"id":128,"category":"Current Mentor","name":"Britt Ruiz","school":"Paul Cuffee Charter School","district":"Paul Cuffee","email":"brittany_ruiz@alumni.brown.edu","fields":{"Contact":"brittany_ruiz@alumni.brown.edu","Grade Level":"High School","Discipline":"Social Studies","Partner/Affiliate/Other":"Other","Alumni Year":"2023","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"y","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Alumni","Other","High School","Social Studies","25-26 Induction"],"notes":""},{"id":129,"category":"Current Mentor","name":"Sundeep Sood","school":"Hope High School","district":"PPSD","email":"sundeep.sood@ppsd.org","fields":{"Contact":"sundeep.sood@ppsd.org","Grade Level":"High School","Discipline":"Social Studies","Partner/Affiliate/Other":"Partner","Alumni Year":"2011","25-26 Summer":"n","25-26 Residency":"y","25-26 Induction":"n","26-27 Summer Eligible":"maybe","26-27 Residency Eligible":"y","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Alumni","Ever Mentored","Partner","High School","Social Studies","25-26 Residency","26-27 Residency Eligible"],"notes":"World History / Civics"},{"id":130,"category":"Current Mentor","name":"Anya Wislocki","school":"Central Falls High School","district":"Central Falls","email":"wislockia@cfschools.net","fields":{"Contact":"wislockia@cfschools.net","Grade Level":"High School","Discipline":"Social Studies","Partner/Affiliate/Other":"Partner","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"y","25-26 Induction":"n","26-27 Summer Eligible":"n","26-27 Residency Eligible":"maybe","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"y","24-25 Induction":""},"tags":["Current Mentor","Ever Mentored","Partner","High School","Social Studies","25-26 Residency","24-25 School Year"],"notes":""},{"id":131,"category":"Current Mentor","name":"Haughton Deion","school":"Segue Institute for Learning","district":"Segue Institute for Learning","email":"","fields":{"Contact":"","Grade Level":"High School","Discipline":"","Partner/Affiliate/Other":"Other","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Other","High School"],"notes":""},{"id":132,"category":"Current Mentor","name":"Christina Fontana","school":"East Providence High School","district":"East Providence","email":"","fields":{"Contact":"","Grade Level":"High School","Discipline":"","Partner/Affiliate/Other":"Affiliate","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Affiliate","High School"],"notes":""},{"id":133,"category":"Current Mentor","name":"Cari Pedro","school":"East Providence High School","district":"East Providence","email":"","fields":{"Contact":"","Grade Level":"High School","Discipline":"","Partner/Affiliate/Other":"Affiliate","Alumni Year":"","25-26 Summer":"n","25-26 Residency":"n","25-26 Induction":"n","26-27 Summer Eligible":"","26-27 Residency Eligible":"","26-27 Induction Eligible":"","26-27 Notes":"","24-25 Summer":"","24-25 School Year":"","24-25 Induction":""},"tags":["Current Mentor","Affiliate","High School"],"notes":""},{"id":134,"category":"Up and Coming Mentor","name":"Lucas Perez","school":"Central Falls High School","district":"Central Falls","email":"perezl@cfschools.net","fields":{"Contact":"perezl@cfschools.net","Grade Level":"High School","Discipline":"Science - Bio","Alumni Year":"2024"},"tags":["Up and Coming Mentor","POC","Alumni","High School","Science - Bio"],"notes":""},{"id":135,"category":"Up and Coming Mentor","name":"Cuauhtemoc Arizpe","school":"Central Falls High School","district":"Central Falls","email":"","fields":{"Contact":"","Grade Level":"High School","Discipline":"Math","Alumni Year":"2024"},"tags":["Up and Coming Mentor","POC","Alumni","High School","Math"],"notes":""},{"id":136,"category":"Up and Coming Mentor","name":"Gilman Jeff","school":"Central Falls High School","district":"Central Falls","email":"gilmanj@cfschools.net","fields":{"Contact":"gilmanj@cfschools.net","Grade Level":"High School","Discipline":"Science - Bio","Alumni Year":""},"tags":["Up and Coming Mentor","High School","Science - Bio"],"notes":""},{"id":137,"category":"Up and Coming Mentor","name":"Jeff Yep","school":"Blackstone Academy","district":"Blackstone Academy","email":"jyep@blackstoneacademy.org","fields":{"Contact":"jyep@blackstoneacademy.org","Grade Level":"High School","Discipline":"Social Studies","Alumni Year":""},"tags":["Up and Coming Mentor","POC","High School","Social Studies"],"notes":""},{"id":138,"category":"Up and Coming Mentor","name":"Mark Buckley","school":"Hope High","district":"PPSD","email":"Mark.Buckley@ppsd.org","fields":{"Contact":"Mark.Buckley@ppsd.org","Grade Level":"High School","Discipline":"English","Alumni Year":"2024"},"tags":["Up and Coming Mentor","Alumni","High School","English"],"notes":""},{"id":139,"category":"Up and Coming Mentor","name":"Rebecca Dalum","school":"Blackstone Academy Charter School","district":"Blackstone Academy","email":"","fields":{"Contact":"","Grade Level":"High School","Discipline":"Math","Alumni Year":""},"tags":["Up and Coming Mentor","High School","Math"],"notes":""},{"id":140,"category":"Up and Coming Mentor","name":"Promethea Carroll","school":"DelSesto Middle","district":"PPSD","email":"promethea.carroll@ppsd.org","fields":{"Contact":"promethea.carroll@ppsd.org","Grade Level":"Middle School","Discipline":"Social Studies","Alumni Year":"2024"},"tags":["Up and Coming Mentor","Alumni","Middle School","Social Studies"],"notes":"not yet"},{"id":141,"category":"Up and Coming Mentor","name":"Oliver O'Neill","school":"Hope High School","district":"PPSD","email":"","fields":{"Contact":"","Grade Level":"High School","Discipline":"Social Studies","Alumni Year":"2024"},"tags":["Up and Coming Mentor","Alumni","High School","Social Studies"],"notes":"Probably headed to Central 4/1/26"},{"id":142,"category":"Up and Coming Mentor","name":"Dore Young","school":"Central Falls High School","district":"Central Falls","email":"","fields":{"Contact":"","Grade Level":"High School","Discipline":"Science - Bio","Alumni Year":"2025"},"tags":["Up and Coming Mentor","POC","Alumni","High School","Science - Bio"],"notes":""},{"id":143,"category":"Up and Coming Mentor","name":"Lucas Flores","school":"Blackstone Valley Prep High School","district":"Blackstone Valley Prep Charter Schools","email":"lucas.flores@bvpri.org","fields":{"Contact":"lucas.flores@bvpri.org","Grade Level":"Other","Discipline":"High School","Alumni Year":"n"},"tags":["Up and Coming Mentor","Alumni","Other","High School"],"notes":"2025"},{"id":144,"category":"Up and Coming Mentor","name":"Cuauhtemoc Arzipe","school":"Central Falls High School","district":"Central Falls","email":"cuauhtemoc1526@gmail.com","fields":{"Contact":"cuauhtemoc1526@gmail.com","Grade Level":"Partner","Discipline":"High School","Alumni Year":"n"},"tags":["Up and Coming Mentor","MLL Focus","Alumni","Partner","High School"],"notes":"2024"},{"id":145,"category":"Up and Coming Mentor","name":"Dore Young","school":"Central Falls High School","district":"Central Falls","email":"dorelynn.young@gmail.com","fields":{"Contact":"dorelynn.young@gmail.com","Grade Level":"Partner","Discipline":"High School","Alumni Year":"n"},"tags":["Up and Coming Mentor","Alumni","Partner","High School"],"notes":"2024"},{"id":146,"category":"Up and Coming Mentor","name":"Joseph Gorte","school":"Community Preparatory School","district":"Private","email":"josephgorte01@gmail.com","fields":{"Contact":"josephgorte01@gmail.com","Grade Level":"Other","Discipline":"Middle School","Alumni Year":""},"tags":["Up and Coming Mentor","Other","Middle School"],"notes":"2024"},{"id":147,"category":"Up and Coming Mentor","name":"Haeun Park","school":"Founders Academy","district":"Beacon Charter Schools","email":"haeunpark00@gmail.com","fields":{"Contact":"haeunpark00@gmail.com","Grade Level":"Partner","Discipline":"Middle School","Alumni Year":""},"tags":["Up and Coming Mentor","MLL Focus","Partner","Middle School"],"notes":"2025"},{"id":148,"category":"Up and Coming Mentor","name":"Erin Lippitt","school":"Greene School","district":"Greene School Charter District","email":"elippitt369@gmail.com","fields":{"Contact":"elippitt369@gmail.com","Grade Level":"","Discipline":"High School","Alumni Year":""},"tags":["Up and Coming Mentor","High School"],"notes":"2025"},{"id":149,"category":"Up and Coming Mentor","name":"Gil Ari","school":"Medway High School","district":"Medway Public Schools","email":"arigil3000@gmail.com","fields":{"Contact":"arigil3000@gmail.com","Grade Level":"Other","Discipline":"High School","Alumni Year":""},"tags":["Up and Coming Mentor","Other","High School"],"notes":"2025"},{"id":150,"category":"Up and Coming Mentor","name":"Jack-Thomas Doughty","school":"Mount Pleasant High School","district":"PPSD","email":"jack-thomas_doughty@alumni.brown.edu","fields":{"Contact":"jack-thomas_doughty@alumni.brown.edu","Grade Level":"Other","Discipline":"High School","Alumni Year":""},"tags":["Up and Coming Mentor","Other","High School"],"notes":"2025"},{"id":151,"category":"Up and Coming Mentor","name":"Ellie Jurmann","school":"Nathan Bishop Middle School","district":"PPSD","email":"ejurmann20@gmail.com","fields":{"Contact":"ejurmann20@gmail.com","Grade Level":"Other","Discipline":"Middle School","Alumni Year":""},"tags":["Up and Coming Mentor","Other","Middle School"],"notes":"2025"},{"id":152,"category":"Up and Coming Mentor","name":"Amy Gaulke","school":"RISE Prep Mayoral Academy","district":"RISE Prep Mayoral Academy","email":"amy_gaulke@alumni.brown.edu","fields":{"Contact":"amy_gaulke@alumni.brown.edu","Grade Level":"Other","Discipline":"High School","Alumni Year":""},"tags":["Up and Coming Mentor","Other","High School"],"notes":"2025"},{"id":153,"category":"Up and Coming Mentor","name":"Sofia Fontaine","school":"RISE Prep Mayoral Academy","district":"RISE Prep Mayoral Academy","email":"fontainofia@gmail.com","fields":{"Contact":"fontainofia@gmail.com","Grade Level":"Other","Discipline":"High School","Alumni Year":""},"tags":["Up and Coming Mentor","Other","High School"],"notes":"2025"},{"id":154,"category":"Up and Coming Mentor","name":"Alana Gerber","school":"Times2 Academy","district":"PPSD Public Charter","email":"alanagerber@gmail.com","fields":{"Contact":"alanagerber@gmail.com","Grade Level":"Other","Discipline":"High School","Alumni Year":""},"tags":["Up and Coming Mentor","Other","High School"],"notes":"2025"},{"id":155,"category":"Up and Coming Mentor","name":"Ryan McCray","school":"DelSesto Middle School","district":"PPSD","email":"ryanlynn.01@gmail.com","fields":{"Contact":"ryanlynn.01@gmail.com","Grade Level":"Other","Discipline":"Middle School","Alumni Year":""},"tags":["Up and Coming Mentor","Other","Middle School"],"notes":"2025"},{"id":156,"category":"Up and Coming Mentor","name":"Oliver O'Neill","school":"Hope High School","district":"PPSD","email":"ooneill198@gmail.com","fields":{"Contact":"ooneill198@gmail.com","Grade Level":"Partner","Discipline":"High School","Alumni Year":""},"tags":["Up and Coming Mentor","Partner","High School"],"notes":"2025"},{"id":157,"category":"Up and Coming Mentor","name":"Promethea Carroll","school":"DelSesto Middle School","district":"PPSD","email":"promethea_carroll@alumni.brown.edu","fields":{"Contact":"promethea_carroll@alumni.brown.edu","Grade Level":"Other","Discipline":"Middle School","Alumni Year":""},"tags":["Up and Coming Mentor","Other","Middle School"],"notes":"2024"},{"id":158,"category":"Up and Coming Mentor","name":"Mark Buckley","school":"Hope High School","district":"PPSD","email":"mbuckley2019@gmail.com","fields":{"Contact":"mbuckley2019@gmail.com","Grade Level":"Partner","Discipline":"High School","Alumni Year":"y"},"tags":["Up and Coming Mentor","Alumni","Partner","High School"],"notes":"2024"},{"id":159,"category":"Former Mentor","name":"Logan Bonney","school":"Barrington High School","district":"Barrington","email":"","fields":{"Contact":"","Grade Level":"High School","Discipline":"Social Studies","Alumni Year":""},"tags":["Former Mentor","High School","Social Studies"],"notes":""},{"id":160,"category":"Former Mentor","name":"Roosevelt Brown","school":"Blackstone Academy Charter School","district":"Blackstone Academy Charter School","email":"rbrown@blackstoneacademy.org","fields":{"Contact":"rbrown@blackstoneacademy.org","Grade Level":"High School","Discipline":"Math","Alumni Year":""},"tags":["Former Mentor","High School","Math"],"notes":""},{"id":161,"category":"Former Mentor","name":"Jess Medeiros","school":"Blackstone Academy Charter School","district":"Blackstone Academy Charter School","email":"jmedeiros@blackstoneacademy.org","fields":{"Contact":"jmedeiros@blackstoneacademy.org","Grade Level":"High School","Discipline":"English","Alumni Year":""},"tags":["Former Mentor","High School","English"],"notes":""},{"id":162,"category":"Former Mentor","name":"Melanie Simas","school":"Central Falls High School","district":"Central Falls","email":"simasm@cfschools.net","fields":{"Contact":"simasm@cfschools.net","Grade Level":"High School","Discipline":"Social Studies","Alumni Year":""},"tags":["Former Mentor","High School","Social Studies"],"notes":""},{"id":163,"category":"Former Mentor","name":"Kelly McGahan","school":"Hope 360","district":"PPSD","email":"kelly.mcgahan@ppsd.org","fields":{"Contact":"kelly.mcgahan@ppsd.org","Grade Level":"High School","Discipline":"Social Studies","Alumni Year":""},"tags":["Former Mentor","High School","Social Studies"],"notes":""},{"id":164,"category":"Former Mentor","name":"Catherine Anderson","school":"Central High School","district":"PPSD","email":"Catherine.Anderson@ppsd.org","fields":{"Contact":"Catherine.Anderson@ppsd.org","Grade Level":"High School","Discipline":"English","Alumni Year":""},"tags":["Former Mentor","High School","English"],"notes":""},{"id":165,"category":"Former Mentor","name":"Emily Nuri","school":"Hope High School","district":"PPSD","email":"emily.nuri@ppsd.org","fields":{"Contact":"emily.nuri@ppsd.org","Grade Level":"High School","Discipline":"Social Studies","Alumni Year":""},"tags":["Former Mentor","High School","Social Studies"],"notes":""},{"id":166,"category":"Former Mentor","name":"Laura Briggs","school":"Hope High School","district":"PPSD","email":"laura.briggs@ppsd.org","fields":{"Contact":"laura.briggs@ppsd.org","Grade Level":"High School","Discipline":"Social Studies","Alumni Year":""},"tags":["Former Mentor","High School","Social Studies"],"notes":""},{"id":167,"category":"Former Mentor","name":"Daae Ransom","school":"Hope High School","district":"PPSD","email":"daae.ransom@ppsd.org","fields":{"Contact":"daae.ransom@ppsd.org","Grade Level":"High School","Discipline":"Science","Alumni Year":""},"tags":["Former Mentor","High School","Science"],"notes":"Daee left Hope. Not sure where she is now."},{"id":168,"category":"Former Mentor","name":"Diandra Kalish","school":"Moses Brown","district":"Private","email":"","fields":{"Contact":"","Grade Level":"High School","Discipline":"Social Studies","Alumni Year":""},"tags":["Former Mentor","High School","Social Studies"],"notes":""},{"id":169,"category":"Former Mentor","name":"Kristin Proft","school":"Paul Cuffee Charter School","district":"Paul Cuffee","email":"kproft@paulcuffee.org","fields":{"Contact":"kproft@paulcuffee.org","Grade Level":"High School","Discipline":"English","Alumni Year":""},"tags":["Former Mentor","High School","English"],"notes":""},{"id":170,"category":"Former Mentor","name":"Alysia D'Urso","school":"Paul Cuffee Charter School","district":"Paul Cuffee","email":"alysia_durso@brown.edu","fields":{"Contact":"alysia_durso@brown.edu","Grade Level":"High School","Discipline":"Spei","Alumni Year":""},"tags":["Former Mentor","High School","Spei"],"notes":""},{"id":171,"category":"Former Mentor","name":"Griffin Quirk","school":"Paul Cuffee Charter School","district":"Paul Cuffee","email":"gquirk@paulcuffee.org","fields":{"Contact":"gquirk@paulcuffee.org","Grade Level":"High School","Discipline":"Social Studies","Alumni Year":""},"tags":["Former Mentor","High School","Social Studies"],"notes":""},{"id":172,"category":"Former Mentor","name":"Matthew Lim","school":"TAPA","district":"TAPA","email":"Mr.Lim@TAPAprovidence.org","fields":{"Contact":"Mr.Lim@TAPAprovidence.org","Grade Level":"High School","Discipline":"Social Studies","Alumni Year":""},"tags":["Former Mentor","High School","Social Studies"],"notes":""},{"id":173,"category":"Former Mentor","name":"Claudia Traub","school":"","district":"PPSD","email":"","fields":{"Contact":"","Grade Level":"High School","Discipline":"Social Studies","Alumni Year":""},"tags":["Former Mentor","High School","Social Studies"],"notes":""},{"id":174,"category":"Former Mentor","name":"Kelsey Lucas","school":"","district":"","email":"klucas@paulcuffee.org","fields":{"Contact":"klucas@paulcuffee.org","Grade Level":"","Discipline":"","Alumni Year":""},"tags":["Former Mentor"],"notes":""},{"id":175,"category":"Former Mentor","name":"John Horton","school":"Blackstone Academy Charter School","district":"Blackstone Academy Charter School","email":"jhorton@blackstoneacademy.org","fields":{"Contact":"jhorton@blackstoneacademy.org","Grade Level":"Partner","Discipline":"High School","Alumni Year":"n"},"tags":["Former Mentor","Alumni","Partner","High School"],"notes":"y"},{"id":176,"category":"Other K-12 Contact","name":"Nicole Mathis","school":"Classical High School","district":"","email":"nicole.mathis@ppsd.org","fields":{"Position":"Vice Principal"},"tags":["Other K-12 Contact","Vice Principal"],"notes":"1996; Vice Principal Role"},{"id":177,"category":"Other K-12 Contact","name":"Emmanuel Oppong-Yeboah","school":"Joseph Lee School","district":"","email":"emmanuel.oppongy@gmail.com","fields":{"Position":"Librarian"},"tags":["Other K-12 Contact","Librarian"],"notes":"Boston; K-8; English; currently school librarian; previously taught 11th grade English at Cambridge Rindge and Latin School; y"},{"id":178,"category":"Other K-12 Contact","name":"Kyleen Carpenter","school":"Blackstone Academy","district":"","email":"kcarpenter@blackstoneacademy.org","fields":{"Position":"Head of School"},"tags":["Other K-12 Contact","Head of School"],"notes":"MOUs (Will Sign); Teacher Placement Requests (Will approve)"},{"id":179,"category":"Other K-12 Contact","name":"Brianna Balke","school":"Blackstone Academy","district":"","email":"bbalke@blackstoneacademy.org","fields":{"Position":"Induction Coordinator (PhD Student)"},"tags":["Other K-12 Contact","Induction Coordinator (PhD Student)"],"notes":"Logistics; should cc on communications that are non-confidential; Will change email once Brown email is available"},{"id":180,"category":"Other K-12 Contact","name":"Ann Lynch","school":"Central Falls","district":"","email":"lyncha@cfschools.net","fields":{"Position":"Assistant Superintendent"},"tags":["Other K-12 Contact","Assistant Superintendent"],"notes":"MOU (Will sign)"},{"id":181,"category":"Other K-12 Contact","name":"Jason Midwood","school":"Central Falls","district":"","email":"midwoodj@cfschools.net","fields":{"Position":"Director of Strategy and Development"},"tags":["Other K-12 Contact","Director of Strategy and Development"],"notes":"MOU"},{"id":182,"category":"Other K-12 Contact","name":"Robert McCarthy","school":"Central Falls","district":"","email":"mccarthyr@cfschools.net","fields":{"Position":"Principal High School"},"tags":["Other K-12 Contact","Principal High School"],"notes":"cc MOU; Teacher Placement Requests (will approve)"},{"id":183,"category":"Other K-12 Contact","name":"Heather Coughlin","school":"East Providence High School","district":"","email":"hcoughlin@epschoolsri.com","fields":{"Position":"English Department Chair"},"tags":["Other K-12 Contact","English Department Chair"],"notes":""},{"id":184,"category":"Other K-12 Contact","name":"David Upegui","school":"Central Falls","district":"","email":"David_Upegui@brown.edu","fields":{"Position":"TRSL"},"tags":["Other K-12 Contact","TRSL"],"notes":"Logistics; should cc on communications that are non-confidential"},{"id":185,"category":"Other K-12 Contact","name":"Christopher Haskins","school":"Paul Cuffee","district":"","email":"chaskins@paulcuffee.org","fields":{"Position":"Head of School"},"tags":["Other K-12 Contact","Head of School"],"notes":"MOU"},{"id":186,"category":"Other K-12 Contact","name":"Genevieve Schultz","school":"Paul Cuffee","district":"","email":"gschultz@paulcuffee.org","fields":{"Position":"Principal High School"},"tags":["Other K-12 Contact","Principal High School"],"notes":"cc MOU; Teacher Placement Requests (will approve)"},{"id":187,"category":"Other K-12 Contact","name":"Abraham Henderson","school":"Paul Cuffee","district":"","email":"ahenderson@paulcuffee.org","fields":{"Position":"TRSL"},"tags":["Other K-12 Contact","TRSL"],"notes":"Logistics; should cc on communications that are non-confidential"},{"id":188,"category":"Other K-12 Contact","name":"Jael Lopes","school":"PPSD","district":"","email":"Jael.Lopes@ppsd.org","fields":{"Position":"Director of Strategic Community Partnerships"},"tags":["Other K-12 Contact","Director of Strategic Community Partnerships"],"notes":"MOU (will forward to those who will sign)"},{"id":189,"category":"Other K-12 Contact","name":"Francisco Velasquez","school":"PPSD","district":"","email":"francisco.velasquez@ppsd.org","fields":{"Position":"Principal"},"tags":["Other K-12 Contact","Principal"],"notes":"cc MOU; Teacher Placement Requests (will approve)"},{"id":190,"category":"Other K-12 Contact","name":"Gail Dececco","school":"PPSD","district":"","email":"gail.dececco@ppsd.org","fields":{"Position":"Asst. Principal"},"tags":["Other K-12 Contact","Asst. Principal"],"notes":""},{"id":191,"category":"Other K-12 Contact","name":"Kerry Tuttlebee","school":"PPSD","district":"","email":"kerry.tuttlebee@ppsd.org","fields":{"Position":"Principal"},"tags":["Other K-12 Contact","Principal"],"notes":"cc MOU; Teacher Placement Requests (will approve)"},{"id":192,"category":"Other K-12 Contact","name":"Scott Barr","school":"PPSD","district":"","email":"scott.barr@ppsd.org","fields":{"Position":"Principal"},"tags":["Other K-12 Contact","Principal"],"notes":"cc MOU; Teacher Placement Requests (will approve) (added 9.21 was not cc'd on MOU)"},{"id":193,"category":"Other K-12 Contact","name":"Tiffany Delaney","school":"PPSD","district":"","email":"tiffany.delaney@ppsd.org","fields":{"Position":"Principal"},"tags":["Other K-12 Contact","Principal"],"notes":"cc MOU; Teacher Placement Requests"},{"id":194,"category":"Other K-12 Contact","name":"Scott Sutherland","school":"PPSD","district":"","email":"scott.sutherland@ppsd.org","fields":{"Position":"Principal"},"tags":["Other K-12 Contact","Principal"],"notes":""},{"id":195,"category":"Other K-12 Contact","name":"Jonathan Goodman","school":"PPSD","district":"","email":"jonathan_goodman@brown.edu","fields":{"Position":"TRSL"},"tags":["Other K-12 Contact","TRSL"],"notes":"Logistics Communicaions related to Hope High School Specifically"},{"id":196,"category":"Other K-12 Contact","name":"Elizabeth Richards-Hegnauer","school":"TAPA","district":"","email":"ms.richards-hegnauer@tapaprovidence.org","fields":{"Position":"Head of School"},"tags":["Other K-12 Contact","Head of School"],"notes":"MOUs (Will Sign); Teacher Placement Requests (Will approve); Logistics"},{"id":197,"category":"Other K-12 Contact","name":"Kevin Cordeiro","school":"TAPA","district":"","email":"mr.cordeiro@tapaprovidence.org","fields":{"Position":"Assistant Head of School"},"tags":["Other K-12 Contact","Assistant Head of School"],"notes":"Also possible contact for logistics"},{"id":198,"category":"Other K-12 Contact","name":"Lindsey Reilly","school":"East Providence","district":"","email":"lreilly@epschoolsri.com","fields":{"Position":"Director of Teaching and Learning"},"tags":["Other K-12 Contact","Director of Teaching and Learning"],"notes":"MOU (Will sign); Teacher Placement Request (will approve) BCI for MATs"},{"id":199,"category":"Other K-12 Contact","name":"William F. Black","school":"East Providence","district":"","email":"wblack@epschoolsri.com","fields":{"Position":"High School Principal"},"tags":["Other K-12 Contact","High School Principal"],"notes":"cc MOU; Teacher Placement Requests (will approve)"},{"id":200,"category":"Other K-12 Contact","name":"Bob Currier","school":"East Providence","district":"","email":"gcurrier@epschoolsri.com","fields":{"Position":"Assistant Principal"},"tags":["Other K-12 Contact","Assistant Principal"],"notes":"cc Teacher Placement request; logistics"},{"id":201,"category":"Other K-12 Contact","name":"Debi Nassi","school":"North Providence","district":"","email":"debi.nassi@npsd.k12.ri.us","fields":{"Position":"Admin Asst. to Asst Superintendent"},"tags":["Other K-12 Contact","Admin Asst. to Asst Superintendent"],"notes":"contact to reach Asst Superintendent (Louise Seitsinger) - sent MOU to her and cc Asst Superintendent and Principal"},{"id":202,"category":"Other K-12 Contact","name":"Louise Seitsinger","school":"North Providence","district":"","email":"Louise.Seitsinger@npsd.k12.ri.us","fields":{"Position":"Asst Superintendent"},"tags":["Other K-12 Contact","Asst Superintendent"],"notes":""},{"id":203,"category":"Other K-12 Contact","name":"Christen Magill","school":"North Providence","district":"","email":"christen.magill@npsd.k12.ri.us","fields":{"Position":"Principal"},"tags":["Other K-12 Contact","Principal"],"notes":""},{"id":204,"category":"Other K-12 Contact","name":"Timothy Olivo","school":"North Providence","district":"","email":"timothy.olivo@npsd.k12.ri.us","fields":{"Position":"Teacher"},"tags":["Other K-12 Contact","Teacher"],"notes":""},{"id":205,"category":"Other K-12 Contact","name":"Erin Flood","school":"PPSD","district":"","email":"Erin.Flood@ppsd.org","fields":{"Position":"HR Coordinator"},"tags":["Other K-12 Contact","HR Coordinator"],"notes":"Responsible for subbing and mentor assignments"},{"id":206,"category":"Other K-12 Contact","name":"Cynthia Ramirez","school":"PPSD","district":"","email":"\"Ramirez, Cynthia\" <Cynthia.Ramirez@ppsd.org>","fields":{"Position":"HR coordinator"},"tags":["Other K-12 Contact","HR coordinator"],"notes":"Responsible for subbing and mentor assignments"},{"id":207,"category":"Other K-12 Contact","name":"Josh Falk","school":"Rise Prep","district":"","email":"jfalk@riseprepri.org","fields":{"Position":"Principal"},"tags":["Other K-12 Contact","Principal"],"notes":""},{"id":208,"category":"Other K-12 Contact","name":"Suzanne Madden","school":"DelSesto","district":"","email":"Suzanne.Madden@ppsd.org","fields":{"Position":"Principal"},"tags":["Other K-12 Contact","Principal"],"notes":""},{"id":209,"category":"Other K-12 Contact","name":"Gloria Jackson","school":"Bishop","district":"","email":"Gloria.Jackson@ppsd.org","fields":{"Position":"Principal"},"tags":["Other K-12 Contact","Principal"],"notes":""},{"id":210,"category":"Other K-12 Contact","name":"Ariel","school":"Pawtucket School District","district":"","email":"","fields":{"Position":"District HR"},"tags":["Other K-12 Contact","District HR"],"notes":""},{"id":211,"category":"Other K-12 Contact","name":"Briana Balke","school":"Blackstone Academy","district":"","email":"","fields":{"Position":""},"tags":["Other K-12 Contact"],"notes":""},{"id":212,"category":"Other K-12 Contact","name":"Matthew Bergeron","school":"Shea High School","district":"","email":"bergeronma@psdri.net","fields":{"Position":"Principal"},"tags":["Other K-12 Contact","Principal"],"notes":"as of 2025"},{"id":213,"category":"Other K-12 Contact","name":"Melissa Labossiere","school":"Shea High School","district":"","email":"labossierem@psdri.net","fields":{"Position":"District Talent Coordinator"},"tags":["Other K-12 Contact","District Talent Coordinator"],"notes":""},{"id":214,"category":"Other K-12 Contact","name":"Julie Horwitz","school":"RIC","district":"","email":"","fields":{"Position":"teach educator - interested in induction"},"tags":["Other K-12 Contact","teach educator - interested in induction"],"notes":""},{"id":215,"category":"Other K-12 Contact","name":"John Horton","school":"San Miguel School (prev-BACS)","district":"","email":"","fields":{"Position":"Principal"},"tags":["Other K-12 Contact","Principal"],"notes":""},{"id":216,"category":"Brown University Contact","name":"Jennifer Dressden (Int\u2019l Students)","school":"Brown University","district":"","email":"","fields":{},"tags":["Brown University Contact"],"notes":""},{"id":217,"category":"Brown University Contact","name":"Ive Sanchez (Gen. Teach)","school":"Brown University","district":"","email":"","fields":{},"tags":["Brown University Contact"],"notes":""},{"id":218,"category":"Brown University Contact","name":"Paolina Morton/Clyde Cole (Great Schools Partnership; diversifying workforce)","school":"Brown University","district":"","email":"","fields":{},"tags":["Brown University Contact"],"notes":""},{"id":219,"category":"Brown University Contact","name":"Matt Juda (former e-cubed principal)","school":"Brown University","district":"","email":"mattjuda@gmail.com","fields":{},"tags":["Brown University Contact"],"notes":""},{"id":220,"category":"Brown University Contact","name":"Grace Argo (Community engaged scholarship @brown and summer program)","school":"Brown University","district":"","email":"grace_argo@brown.edu","fields":{},"tags":["Brown University Contact"],"notes":""},{"id":221,"category":"Brown University Contact","name":"catherine zabrinski (learning tech designer at sheridan)","school":"Brown University","district":"","email":"","fields":{},"tags":["Brown University Contact"],"notes":""},{"id":222,"category":"Brown University Contact","name":"Jake Silverman (Athletics) Raymond Grant- recreation","school":"Brown University","district":"","email":"","fields":{},"tags":["Brown University Contact"],"notes":""},{"id":223,"category":"Brown University Contact","name":"melissa scheve (yale education studies)","school":"Brown University","district":"","email":"","fields":{},"tags":["Brown University Contact"],"notes":""}]</script>
+<script>
+(function(){
+  "use strict";
+
+  var RAW = JSON.parse(document.getElementById('contact-data').textContent);
+
+  var CATS = [
+    {name:"Current Mentor", color:"#8c2a2a"},
+    {name:"Up and Coming Mentor", color:"#a9823b"},
+    {name:"Former Mentor", color:"#6a4e63"},
+    {name:"Other K-12 Contact", color:"#3f5566"},
+    {name:"Brown University Contact", color:"#4c5f48"}
+  ];
+  var CAT_COLOR = {};
+  CATS.forEach(function(c){ CAT_COLOR[c.name] = c.color; });
+
+  // ---------- local storage (per-browser personalization) ----------
+  var STORE_KEY = "mentorRosterLocalData.v1";
+  var local = {};
+  try{
+    local = JSON.parse(localStorage.getItem(STORE_KEY) || "{}");
+  }catch(e){ local = {}; }
+  if(!local.customTags) local.customTags = {};   // id -> [tags]
+  if(!local.favorites) local.favorites = {};      // id -> true
+  if(!local.privateNotes) local.privateNotes = {}; // id -> text
+
+  function saveLocal(){
+    try{ localStorage.setItem(STORE_KEY, JSON.stringify(local)); }catch(e){}
+  }
+
+  function allTagsFor(contact){
+    var extra = local.customTags[contact.id] || [];
+    return contact.tags.concat(extra);
+  }
+
+  // ---------- state ----------
+  var state = {
+    search:"",
+    activeCats: new Set(CATS.map(function(c){return c.name;})),
+    activeTags: new Set(),
+    favOnly:false,
+    sort:"name",
+    tagFilter:""
+  };
+
+  // ---------- tag frequency (base + custom) ----------
+  function computeTagCounts(){
+    var counts = {};
+    RAW.forEach(function(c){
+      allTagsFor(c).forEach(function(t){
+        counts[t] = (counts[t]||0)+1;
+      });
+    });
+    return counts;
+  }
+
+  // ---------- DOM refs ----------
+  var $ = function(id){ return document.getElementById(id); };
+  var catListEl = $('catList');
+  var tagCloudEl = $('tagCloud');
+  var gridEl = $('grid');
+  var emptyStateEl = $('emptyState');
+  var activeFiltersEl = $('activeFilters');
+  var visibleCountEl = $('visibleCount');
+  var totalCountEl = $('totalCount');
+
+  totalCountEl.textContent = RAW.length;
+
+  // ---------- render category list ----------
+  function renderCats(){
+    catListEl.innerHTML = "";
+    var counts = {};
+    RAW.forEach(function(c){ counts[c.category] = (counts[c.category]||0)+1; });
+    CATS.forEach(function(cat){
+      var li = document.createElement('li');
+      var btn = document.createElement('button');
+      btn.className = 'cat-btn' + (state.activeCats.has(cat.name) ? ' active' : '');
+      btn.innerHTML = '<span style="display:flex;align-items:center;gap:8px;"><span class="swatch" style="background:'+cat.color+'"></span>'+cat.name+'</span><span class="num">'+(counts[cat.name]||0)+'</span>';
+      btn.onclick = function(){
+        if(state.activeCats.has(cat.name)){
+          if(state.activeCats.size > 1) state.activeCats.delete(cat.name);
+          else { CATS.forEach(function(c){state.activeCats.add(c.name);}); state.activeCats = new Set([cat.name]); }
+        } else {
+          state.activeCats.add(cat.name);
+        }
+        renderAll();
+      };
+      li.appendChild(btn);
+      catListEl.appendChild(li);
+    });
+  }
+
+  // ---------- render tag cloud ----------
+  function renderTagCloud(){
+    var counts = computeTagCounts();
+    var tags = Object.keys(counts).sort(function(a,b){
+      return counts[b]-counts[a] || a.localeCompare(b);
+    });
+    var filterText = state.tagFilter.toLowerCase();
+    if(filterText){
+      tags = tags.filter(function(t){ return t.toLowerCase().indexOf(filterText) > -1; });
+    }
+    tagCloudEl.innerHTML = "";
+    tags.forEach(function(t){
+      var chip = document.createElement('button');
+      chip.className = 'tag-chip' + (state.activeTags.has(t) ? ' active' : '');
+      chip.textContent = t + ' (' + counts[t] + ')';
+      chip.onclick = function(){
+        if(state.activeTags.has(t)) state.activeTags.delete(t);
+        else state.activeTags.add(t);
+        renderAll();
+      };
+      tagCloudEl.appendChild(chip);
+    });
+  }
+
+  // ---------- filtering ----------
+  function matches(c){
+    if(!state.activeCats.has(c.category)) return false;
+    if(state.favOnly && !local.favorites[c.id]) return false;
+    if(state.activeTags.size){
+      var tags = allTagsFor(c);
+      for(var t of state.activeTags){
+        if(tags.indexOf(t) === -1) return false;
+      }
+    }
+    if(state.search){
+      var hay = [
+        c.name, c.school, c.district, c.email, c.notes,
+        Object.values(c.fields||{}).join(' '),
+        allTagsFor(c).join(' '),
+        local.privateNotes[c.id]||''
+      ].join(' ').toLowerCase();
+      if(hay.indexOf(state.search.toLowerCase()) === -1) return false;
+    }
+    return true;
+  }
+
+  function sortFn(a,b){
+    if(state.sort === 'school') return (a.school||'').localeCompare(b.school||'');
+    if(state.sort === 'category') return a.category.localeCompare(b.category) || lastName(a).localeCompare(lastName(b));
+    return lastName(a).localeCompare(lastName(b));
+  }
+  function lastName(c){
+    var parts = c.name.trim().split(' ');
+    return parts.length>1 ? parts[parts.length-1] : c.name;
+  }
+
+  // ---------- active filter chips ----------
+  function renderActiveFilters(){
+    activeFiltersEl.innerHTML = "";
+    var anyPartialCats = state.activeCats.size < CATS.length;
+    if(anyPartialCats){
+      CATS.forEach(function(cat){
+        if(!state.activeCats.has(cat.name)) return;
+        if(state.activeCats.size === CATS.length) return;
+      });
+    }
+    state.activeTags.forEach(function(t){
+      var chip = document.createElement('span');
+      chip.className = 'f-chip';
+      chip.innerHTML = '<span>#'+t+'</span>';
+      var x = document.createElement('button');
+      x.textContent = '✕';
+      x.onclick = function(){ state.activeTags.delete(t); renderAll(); };
+      chip.appendChild(x);
+      activeFiltersEl.appendChild(chip);
+    });
+    if(state.favOnly){
+      var chip2 = document.createElement('span');
+      chip2.className = 'f-chip';
+      chip2.innerHTML = '<span>★ favorites</span>';
+      var x2 = document.createElement('button');
+      x2.textContent = '✕';
+      x2.onclick = function(){ state.favOnly = false; $('favOnly').checked=false; renderAll(); };
+      chip2.appendChild(x2);
+      activeFiltersEl.appendChild(chip2);
+    }
+  }
+
+  // ---------- card rendering ----------
+  function cardHTML(c){
+    var color = CAT_COLOR[c.category] || '#8c2a2a';
+    var tags = allTagsFor(c);
+    var shown = tags.slice(0,4);
+    var customSet = {};
+    (local.customTags[c.id]||[]).forEach(function(t){ customSet[t]=true; });
+    var chipHtml = shown.map(function(t){
+      return '<span class="mini-tag'+(customSet[t]?' custom':'')+'">'+escapeHtml(t)+'</span>';
+    }).join('');
+    if(tags.length > 4){
+      chipHtml += '<span class="mini-tag more">+'+(tags.length-4)+'</span>';
+    }
+    var metaLine = [c.school, c.district].filter(Boolean).join(' · ');
+    var isFav = !!local.favorites[c.id];
+    return (
+      '<div class="row1">'+
+        '<h3>'+escapeHtml(c.name)+'</h3>'+
+        '<button class="star'+(isFav?' on':'')+'" data-fav="'+c.id+'" title="Favorite">'+(isFav?'★':'☆')+'</button>'+
+      '</div>'+
+      '<span class="cat-badge" style="background:'+color+'22;color:'+color+'">'+c.category+'</span>'+
+      (metaLine ? '<div class="meta"><span class="school">'+escapeHtml(metaLine)+'</span></div>' : '')+
+      '<div class="chiprow">'+chipHtml+'</div>'
+    );
+  }
+
+  function escapeHtml(s){
+    return String(s||'').replace(/[&<>"']/g, function(m){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m];
+    });
+  }
+
+  function renderGrid(){
+    var list = RAW.filter(matches).sort(sortFn);
+    visibleCountEl.textContent = list.length;
+    gridEl.innerHTML = "";
+    if(list.length === 0){
+      emptyStateEl.style.display = 'block';
+      return;
+    }
+    emptyStateEl.style.display = 'none';
+    list.forEach(function(c){
+      var card = document.createElement('div');
+      card.className = 'card';
+      card.style.borderLeftColor = CAT_COLOR[c.category] || '#8c2a2a';
+      card.innerHTML = cardHTML(c);
+      card.addEventListener('click', function(e){
+        if(e.target.closest('[data-fav]')) return;
+        openModal(c);
+      });
+      var starBtn = card.querySelector('[data-fav]');
+      starBtn.addEventListener('click', function(e){
+        e.stopPropagation();
+        local.favorites[c.id] = !local.favorites[c.id];
+        saveLocal();
+        renderAll();
+      });
+      gridEl.appendChild(card);
+    });
+  }
+
+  // ---------- modal ----------
+  var overlay = $('overlay');
+  var modal = $('modal');
+
+  function openModal(c){
+    var color = CAT_COLOR[c.category] || '#8c2a2a';
+    var fieldsHtml = "";
+    Object.keys(c.fields||{}).forEach(function(k){
+      var v = c.fields[k];
+      if(!v) return;
+      fieldsHtml += '<div class="field"><label>'+escapeHtml(k)+'</label><div>'+escapeHtml(v)+'</div></div>';
+    });
+    var tags = allTagsFor(c);
+    var customSet = {};
+    (local.customTags[c.id]||[]).forEach(function(t){ customSet[t]=true; });
+    var tagEditHtml = tags.map(function(t){
+      var removable = customSet[t];
+      return '<span class="tag-chip active" style="background:'+(removable?'var(--pine)':color)+';border-color:'+(removable?'var(--pine)':color)+'">'+escapeHtml(t)+
+        (removable ? '<span class="x" data-remove-tag="'+escapeHtml(t)+'" style="cursor:pointer;">✕</span>' : '') +
+        '</span>';
+    }).join('');
+
+    modal.innerHTML =
+      '<button class="close-x" id="closeModal">✕</button>'+
+      '<span class="cat-badge" style="background:'+color+'22;color:'+color+'">'+c.category+'</span>'+
+      '<h2 style="margin-top:8px;">'+escapeHtml(c.name)+'</h2>'+
+      '<div class="modal-meta">'+escapeHtml([c.school,c.district].filter(Boolean).join(' · '))+'</div>'+
+      (c.email ? '<a class="mail-btn" href="mailto:'+escapeHtml(c.email)+'">✉ '+escapeHtml(c.email)+'</a>' : '<div style="font-size:13.5px;color:var(--ink-soft);">No email on file</div>')+
+      (fieldsHtml ? '<div class="section-label">Details</div><div class="field-grid">'+fieldsHtml+'</div>' : '')+
+      (c.notes ? '<div class="section-label">Notes</div><div class="notes-box">'+escapeHtml(c.notes)+'</div>' : '')+
+      '<div class="section-label">Tags</div>'+
+      '<div class="tag-edit">'+tagEditHtml+'</div>'+
+      '<div class="add-tag-row"><input type="text" id="newTagInput" placeholder="Add a tag (e.g. Follow up, Great fit)"><button id="addTagBtn">Add</button></div>'+
+      '<div class="section-label">Your private notes <span style="font-weight:400;text-transform:none;letter-spacing:0;">(saved in this browser only)</span></div>'+
+      '<textarea class="private-note" id="privateNoteBox" placeholder="Add a note to yourself about this contact…">'+escapeHtml(local.privateNotes[c.id]||'')+'</textarea>';
+
+    overlay.classList.add('show');
+
+    $('closeModal').onclick = closeModal;
+    modal.querySelectorAll('[data-remove-tag]').forEach(function(el){
+      el.onclick = function(ev){
+        ev.stopPropagation();
+        var tag = el.getAttribute('data-remove-tag');
+        local.customTags[c.id] = (local.customTags[c.id]||[]).filter(function(t){return t!==tag;});
+        saveLocal();
+        openModal(c);
+        renderTagCloud();
+        renderGrid();
+      };
+    });
+    $('addTagBtn').onclick = function(){
+      var input = $('newTagInput');
+      var val = input.value.trim();
+      if(!val) return;
+      if(!local.customTags[c.id]) local.customTags[c.id] = [];
+      if(local.customTags[c.id].indexOf(val) === -1 && c.tags.indexOf(val) === -1){
+        local.customTags[c.id].push(val);
+        saveLocal();
+        openModal(c);
+        renderTagCloud();
+        renderGrid();
+      }
+    };
+    $('newTagInput').addEventListener('keydown', function(e){
+      if(e.key === 'Enter'){ $('addTagBtn').click(); }
+    });
+    $('privateNoteBox').addEventListener('input', function(e){
+      local.privateNotes[c.id] = e.target.value;
+      saveLocal();
+    });
+  }
+
+  function closeModal(){
+    overlay.classList.remove('show');
+  }
+  overlay.addEventListener('click', function(e){
+    if(e.target === overlay) closeModal();
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') closeModal();
+  });
+
+  // ---------- wire up static controls ----------
+  $('searchInput').addEventListener('input', function(e){
+    state.search = e.target.value;
+    renderAll();
+  });
+  $('tagSearch').addEventListener('input', function(e){
+    state.tagFilter = e.target.value;
+    renderTagCloud();
+  });
+  $('favOnly').addEventListener('change', function(e){
+    state.favOnly = e.target.checked;
+    renderAll();
+  });
+  $('sortSelect').addEventListener('change', function(e){
+    state.sort = e.target.value;
+    renderGrid();
+  });
+  $('resetCats').addEventListener('click', function(){
+    state.activeCats = new Set(CATS.map(function(c){return c.name;}));
+    renderAll();
+  });
+  $('resetTags').addEventListener('click', function(){
+    state.activeTags = new Set();
+    renderAll();
+  });
+  $('resetAll').addEventListener('click', function(){
+    state.search=""; $('searchInput').value="";
+    state.activeCats = new Set(CATS.map(function(c){return c.name;}));
+    state.activeTags = new Set();
+    state.favOnly = false; $('favOnly').checked = false;
+    state.tagFilter = ""; $('tagSearch').value="";
+    renderAll();
+  });
+
+  function renderAll(){
+    renderCats();
+    renderTagCloud();
+    renderActiveFilters();
+    renderGrid();
+  }
+
+  renderAll();
+})();
+
+</script>
+</body>
+</html>
